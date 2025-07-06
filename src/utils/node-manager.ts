@@ -23,6 +23,7 @@ import { SelectRandomDice } from "@/features/select-random-dice";
 import { SelectRandomSymbol } from "@/features/select-random-symbol";
 import { MergeDicePools } from "@/features/merge-dice-pools";
 import { SelectHighestDice } from "@/features/select-highest-dice";
+import { XYPosition } from "@xyflow/react";
 
 const NODE_MODULES = {
   //dice
@@ -70,6 +71,17 @@ export const NodeManager = {
     return service.new(flow, defaultDefinitions);
   },
 
+  duplicate(flow: IFlowInstance, id: string) {
+    const baseNode = flow.getNode(id);
+    if (!baseNode) return null;
+
+    const newNode = this.new(baseNode.type, flow);
+    newNode.data = { ...baseNode.data };
+    newNode.position = getAdjustedPosition(flow);
+    flow.addNodes([newNode]);
+    return newNode;
+  },
+
   runIterative<N extends INode = INode>(node: N, inputs: { node: INode; state: INodeState }[], iterations: number): INodeState<N> {
     const service = NODE_MODULES[node.type].service;
     if (!service) throw new Error(`Node type ${node.type} not registered`);
@@ -88,10 +100,16 @@ export const NodeManager = {
   },
 };
 
-function getAdjustedPosition(flow: IFlowInstance, offset: number = 10): { x: number; y: number } {
+function getAdjustedPosition(flow: IFlowInstance, options?: { offset?: number; center?: XYPosition }): XYPosition {
   const { x, y, zoom } = flow.getViewport();
   const containerCenter = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
+  if (options?.center) {
+    containerCenter.x = options.center.x;
+    containerCenter.y = options.center.y;
+  }
+
+  const offset = options?.offset || 18;
   let adjustedPosition = { x: (containerCenter.x - x) / zoom, y: (containerCenter.y - y) / zoom - 50 };
   while (flow.getNodes().some((node) => node.position.x === adjustedPosition.x && node.position.y === adjustedPosition.y)) {
     adjustedPosition = { x: adjustedPosition.x + offset, y: adjustedPosition.y + offset };

@@ -11,6 +11,7 @@ type IProps = NodeProps<IDiceExplodeNode>;
 export const DiceExplodeNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

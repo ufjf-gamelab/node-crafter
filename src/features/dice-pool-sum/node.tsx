@@ -11,6 +11,7 @@ type IProps = NodeProps<IDicePoolSumNode>;
 export const DicePoolSumNode: React.ComponentType<IProps> = ({ data, isConnectable, selected, id }) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

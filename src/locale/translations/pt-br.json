@@ -15,7 +15,9 @@
     "logical": "Lógica",
     "pools": "Pools",
     "filters": "Filtros",
-    "nodeDocNotFound": "Documentação do nó em desenvolvimento"
+    "nodeDocNotFound": "Documentação do nó em desenvolvimento",
+    "duplicate": "Duplicar",
+    "delete": "Excluir"
   },
   "sidebar": {
     "clearTooltip": "Limpar todos nós",

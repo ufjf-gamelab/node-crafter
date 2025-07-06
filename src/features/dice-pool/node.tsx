@@ -9,7 +9,7 @@ type IProps = NodeProps<IDicePoolNode>;
 
 export const DicePoolNode: React.ComponentType<IProps> = ({ data, isConnectable, selected, id }) => {
   return (
-    <BaseNode selected={selected} name={data.name} status={data.status} label={data.quantity} icon={<GiRollingDices />}>
+    <BaseNode id={id} selected={selected} name={data.name} status={data.status} label={data.quantity} icon={<GiRollingDices />}>
       <NodeHandle id={"pool-target-" + id} type="target" dataType={data.inputType} position={Position.Left} isConnectable={isConnectable} />
       <NodeHandle id={"pool-source-" + id} type="source" dataType={data.outputType} position={Position.Right} isConnectable={isConnectable} />
     </BaseNode>

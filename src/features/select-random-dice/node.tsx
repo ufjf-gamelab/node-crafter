@@ -11,6 +11,7 @@ type IProps = NodeProps<ISelectRandomDiceNode>;
 export const SelectRandomDiceNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

@@ -10,6 +10,7 @@ type IProps = NodeProps<IAndLogicalNode>;
 export const AndLogicalNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }: IProps) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

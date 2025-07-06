@@ -9,7 +9,7 @@ type IProps = NodeProps<IBagPullWithoutRepetitionNode>;
 
 export const BagPullWithoutRepetitionNode: React.ComponentType<IProps> = ({ data, isConnectable, selected, id }) => {
   return (
-    <BaseNode selected={selected} name={data.name} status={data.status} icon={<GiRollingDiceCup />}>
+    <BaseNode id={id} selected={selected} name={data.name} status={data.status} icon={<GiRollingDiceCup />}>
       <NodeHandle id={"pull-target-" + id} type="target" dataType={data.inputType} position={Position.Left} isConnectable={isConnectable} />
       <NodeHandle id={"pull-source-" + id} type="source" dataType={data.outputType} position={Position.Right} isConnectable={isConnectable} />
     </BaseNode>

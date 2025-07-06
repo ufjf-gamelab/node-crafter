@@ -13,6 +13,7 @@ export const DiceMathNode: React.ComponentType<IProps> = ({ data, selected, isCo
   const { t } = useTranslation();
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

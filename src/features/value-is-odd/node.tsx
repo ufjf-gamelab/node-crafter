@@ -10,6 +10,7 @@ type IProps = NodeProps<IValueIsOddNode>;
 export const ValueIsOddNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

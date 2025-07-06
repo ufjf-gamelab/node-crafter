@@ -15,7 +15,9 @@
     "logical": "Logical",
     "pools": "Pools",
     "filters": "Filters",
-    "nodeDocNotFound": "Node documentation under development"
+    "nodeDocNotFound": "Node documentation under development",
+    "duplicate": "Duplicate",
+    "delete": "Delete"
   },
   "sidebar": {
     "clearTooltip": "Clear all nodes",

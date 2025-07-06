@@ -11,6 +11,7 @@ type IProps = NodeProps<ISymbolicGeneratorNode>;
 export const SymbolicGeneratorNode: React.ComponentType<IProps> = ({ data, isConnectable, selected, id }) => {
   return (
     <BaseNode
+      id={id}
       selected={selected}
       name={data.name}
       status={data.status}

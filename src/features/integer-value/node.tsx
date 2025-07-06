@@ -8,7 +8,13 @@ type IProps = NodeProps<IIntegerValueNode>;
 
 export const IntegerValueNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }) => {
   return (
-    <BaseNode selected={selected} name={data.name} status={data.status} label={data.value} icon={<span className="font-semibold">&#8484;</span>}>
+    <BaseNode
+      id={id}
+      selected={selected}
+      name={data.name}
+      status={data.status}
+      label={data.value}
+      icon={<span className="font-semibold">&#8484;</span>}>
       <NodeHandle id={"dice-gen-source-" + id} type="source" dataType={data.outputType} position={Position.Right} isConnectable={isConnectable} />
     </BaseNode>
   );
