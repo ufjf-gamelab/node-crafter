@@ -1,4 +1,4 @@
-**Contar Repetição de Dado** é um **nó do tipo modificador** utilizado para contar quantas vezes um valor específico (face) aparece entre os resultados gerados por um **Dado Gerador**. Ele é útil para representar mecânicas baseadas em frequência de resultados, como acertos múltiplos em rolagens.
+**Contar Repetição de Dado** é um **nó do tipo modificador** utilizado para contar quantas vezes um valor específico (face) aparece entre os resultados gerados por um **Gerador de Dado**. Ele é útil para representar mecânicas baseadas em frequência de resultados, como acertos múltiplos em rolagens.
 
 - **Tipo:** Modificador (nó intermediário)
 - **Função:** Conta a quantidade de vezes que uma face específica aparece nos resultados

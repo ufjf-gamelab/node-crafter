@@ -35,7 +35,7 @@
 - Ter rolado um valor par
 - Ter atingido a meta de sucesso (por exemplo, rolar um número maior ou igual a `8`)
 
-### **1. Propriedades do Dado Gerador:**
+### **1. Propriedades do Gerador de Dado:**
 
 - Valor Mínimo `1`
 - Valor Máximo `10`

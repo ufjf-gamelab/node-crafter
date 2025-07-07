@@ -49,7 +49,7 @@
 
 ### **3. Conexão com outros nós:**
 
-- Conecte o **Dado Gerador** ao nó **Explosão de Dado**
+- Conecte o **Gerador de Dado** ao nó **Explosão de Dado**
 - Conecte o **Explosão de Dado** ao nó **Histograma**
 
 <img src="/node-crafter/doc-images/dice-explode.png" width="500px" alt="Exemplo de uso do Explosão de Dado"/>

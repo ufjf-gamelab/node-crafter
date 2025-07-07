@@ -49,8 +49,8 @@
 
 ### **3. Conexão com outros nós:**
 
-- Conecte **Dado Gerador do dano base** ao nó **Matemático**
-- Conecte **Dado Gerador do bonus de força** ao nó **Matemático**
+- Conecte **Gerador de Dado do dano base** ao nó **Matemático**
+- Conecte **Gerador de Dado do bonus de força** ao nó **Matemático**
 - Conecte **Matemático** ao nó **Histograma**
 
 <img src="/node-crafter/doc-images/math.png" width="500px" alt="Exemplo de uso do nó Matemático"/>

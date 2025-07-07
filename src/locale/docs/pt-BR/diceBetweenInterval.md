@@ -44,7 +44,7 @@
 
 **Cenário:** Simular um teste de resistência em que o valor só é considerado sucesso se estiver entre `3` e `5`, inclusive.
 
-### **1. Propriedades do Dado Gerador:**
+### **1. Propriedades do Gerador de Dado:**
 
 - Valor Mínimo: `1`
 - Valor Máximo: `6`
@@ -56,7 +56,7 @@
 
 ### **3. Conexão com outros nós:**
 
-- Conecte **Dado Gerador** ao nó **Dado Entre Intervalo**
+- Conecte **Gerador de Dado** ao nó **Dado Entre Intervalo**
 - Conecte **Dado Entre Intervalo** ao nó **Histograma**
 
 <img src="/node-crafter/doc-images/dice-between-interval.png" width="500px" alt="Exemplo de uso do Dado Entre Intervalo"/>

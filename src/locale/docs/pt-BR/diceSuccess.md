@@ -38,7 +38,7 @@
 
 **Cenário:** Simular um ataque básico em um RPG que usa um dado de 6 faces (1d6) e requer um valor mínimo de 4 para acerto.
 
-### **1. Propriedades do Dado Gerador:**
+### **1. Propriedades do Gerador de Dado:**
 
 - Valor Mínimo: `1`
 - Valor Máximo: `6`
@@ -49,7 +49,7 @@
 
 ### **3. Conexão com outros nós:**
 
-- Conecte **Dado Gerador** ao nó **Dado Sucesso**
+- Conecte **Gerador de Dado** ao nó **Dado Sucesso**
 - Conecte **Dado Sucesso** ao nó **Histograma**
 
 <img src="/node-crafter/doc-images/generator-success.png" width="500px" alt="Example usage of Dice Success"/>
