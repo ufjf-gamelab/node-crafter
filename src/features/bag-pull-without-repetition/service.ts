@@ -14,31 +14,37 @@ export const BagPullWithoutRepetitionService: INodeService<IBagPullWithoutRepeti
         status: "IDLE",
         inputType: "symbolicGenerator",
         outputType: "symbolicPool",
+        pulls: 2,
       },
     };
   },
 
-  run({ inputs }) {
+  run({ node, inputs }) {
     const [source] = inputs;
     if (!source) throw new Error("Source connection state not found!");
 
     const sourceNode = source.node as ISymbolicGeneratorNode;
-    const resultState = pullBagWithoutRepetition(sourceNode.data.faces);
+    if (sourceNode.data.faces.length < node.data.pulls) throw new Error(i18n.t("errors.pullsGreaterThanFaces"));
+
+    const resultState = pullBagWithoutRepetition(sourceNode.data.faces, node.data.pulls);
     return resultState;
   },
 };
 
-function pullBagWithoutRepetition(balls: string[]) {
+function pullBagWithoutRepetition(balls: string[], pulls: number) {
   const result: string[][] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
-    const bolasEmbaralhadas = [...balls];
-    for (let j = bolasEmbaralhadas.length - 1; j > 0; j--) {
-      const k = Math.floor(Math.random() * (j + 1));
-      [bolasEmbaralhadas[j], bolasEmbaralhadas[k]] = [bolasEmbaralhadas[k], bolasEmbaralhadas[j]];
+    const bag = [...balls];
+    const pulledValues: string[] = [];
+
+    for (let j = 0; j < pulls; j++) {
+      const pulledFace = bag[Math.floor(Math.random() * bag.length)];
+      pulledValues.push(pulledFace);
+      bag.splice(bag.indexOf(pulledFace), 1);
     }
 
-    result.push(bolasEmbaralhadas);
+    result.push(pulledValues);
   }
 
   return result;
