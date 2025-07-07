@@ -3,6 +3,8 @@ import { useReactFlow } from "@xyflow/react";
 import { waitAsync } from "@/utils/waitAsync";
 import { IChart, IEdge, IHistogramNode, INode, INodeState } from "@/config/types";
 import { NodeManager } from "@/utils/node-manager";
+import { notifications } from "@mantine/notifications";
+import { i18n } from "@/config/i18n";
 
 interface UIStateContextProps {
   loading: boolean;
@@ -41,8 +43,16 @@ export const SimulationProvider: React.ComponentType<UIStateProviderProps> = ({ 
         const chartData = runIterativeFromHistogram(histogram);
         newCharts.push({ id: "chart_" + histogram.id, name: histogram.data.name, data: chartData });
       } catch (error) {
-        alert("Error building chart! " + error?.message);
-        console.error("Error building chart", error);
+        notifications.show({
+          message: (
+            <>
+              <p className="font-semibold">{i18n.t("errors.tryingToRunSimulationsTitle")}</p>
+              <span>{error?.message}</span>
+            </>
+          ),
+          color: "red",
+        });
+        console.log("Error building chart", error);
         setLoading(false);
       }
     });
@@ -102,7 +112,7 @@ export const SimulationProvider: React.ComponentType<UIStateProviderProps> = ({ 
     }
 
     const finalState = nodesStateMap.get(histogramNode.id) as INodeState<IHistogramNode> | undefined;
-    if (!finalState) throw new Error("Histogram state not found!");
+    if (!finalState) throw new Error(i18n.t("errors.histogramStateNotFound", { name: histogramNode.data.name }));
     return finalState;
   }
 

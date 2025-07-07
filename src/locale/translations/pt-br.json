@@ -19,6 +19,13 @@
     "duplicate": "Duplicar",
     "delete": "Excluir"
   },
+  "errors": {
+    "tryingToRunSimulationsTitle": "Erro tentando executar simulações!",
+    "sourceNotFound": "Conexão de origem não encontrada.",
+    "sourceForTheNodeNotFound": "Conexão de origem para o nó \"{{name}}\" não encontrada.",
+    "explodeFaceGreaterThanMax": "Face de explosão não pode ser maior que a face máxima do Gerador de Dado.",
+    "histogramStateNotFound": "Nenhum estado encontrada para o histograma \"{{name}}\"."
+  },
   "sidebar": {
     "clearTooltip": "Limpar todos nós",
     "english": "Inglês",

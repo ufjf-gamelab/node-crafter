@@ -19,6 +19,13 @@
     "duplicate": "Duplicate",
     "delete": "Delete"
   },
+  "errors": {
+    "tryingToRunSimulationsTitle": "Error trying to run simulations!",
+    "sourceNotFound": "Source connection not found.",
+    "sourceForTheNodeNotFound": "Source connection for the node \"{{name}}\" not found.",
+    "explodeFaceGreaterThanMax": "Explode face can't be greater than dice generator max face.",
+    "histogramStateNotFound": "No state found for the histogram \"{{name}}\"."
+  },
   "sidebar": {
     "clearTooltip": "Clear all nodes",
     "english": "English",

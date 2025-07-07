@@ -22,7 +22,7 @@ export const HistogramService: INodeService<IHistogramNode> = {
 
   run({ node, inputs }) {
     const [source1] = inputs;
-    if (!source1) throw new Error("Source connection state not found!");
+    if (!source1) throw new Error(i18n.t("errors.sourceForTheNodeNotFound", { name: node.data.name }));
 
     const sourceState = source1.state;
     const sourceNode = source1.node;

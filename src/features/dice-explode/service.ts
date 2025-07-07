@@ -19,11 +19,11 @@ export const DiceExplodeService: INodeService<IDiceExplodeNode> = {
 
   run({ node, inputs }) {
     const [source] = inputs;
-    if (!source) throw new Error("Source connection state not found!");
+    if (!source) throw new Error(i18n.t("errors.sourceNotFound"));
 
     const sourceState = source.state as number[];
     const sourceNode = source.node as IDiceGeneratorNode;
-    if (sourceNode.data.max < node.data.explodeFace) throw new Error("Explode face can't be greater than dice generator max face!");
+    if (sourceNode.data.max < node.data.explodeFace) throw new Error(i18n.t("errors.explodeFaceGreaterThanMax"));
 
     const resultState = explodeDice(sourceState, node.data.explodeFace);
     return resultState;
@@ -51,32 +51,3 @@ function explodeDice(data: number[], explodeFace: number): number[] {
 
   return result;
 }
-
-//  mc die explode
-// function explodeDicePool(data: number[][], explodeFace: number): number[] {
-//   const MAX_DEPTH = 20;
-//   // Simula uma rolagem de dado d6 (pode adaptar)
-//   function rollDie(): number {
-//     return Math.floor(Math.random() * 6) + 1;
-//   }
-
-//   // Conta explosões recursivamente para um grupo
-//   function countGroupExplosions(group: number[]): number {
-//     let explosions = 0;
-//     const diceQueue = [...group]; // fila dos dados para verificar explosão
-//     let depth = 0;
-
-//     while (diceQueue.length > 0 && depth < MAX_DEPTH) {
-//       const die = diceQueue.shift()!;
-//       if (die === explodeFace) {
-//         explosions++;
-//         const newDie = rollDie();
-//         diceQueue.push(newDie); // novo dado pode explodir também
-//       }
-//       depth++;
-//     }
-//     return explosions;
-//   }
-//   // Para cada grupo, conta as explosões
-//   return data.map((group) => countGroupExplosions(group));
-// }
