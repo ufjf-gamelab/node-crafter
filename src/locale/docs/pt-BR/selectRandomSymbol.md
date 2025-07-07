@@ -32,7 +32,7 @@
 
 **Cenário:** Em um jogo de cartas, um jogador recebe 3 cartas aleatórias de uma pilha simbólica contendo "Espada", "Escudo" e "Poção". Para cada jogada, apenas **um dos símbolos** será selecionado aleatoriamente como ação principal.
 
-### **1. Propriedades do nó Gerador de Símbolo:**
+### **1. Propriedades do nó Gerador Simbólico:**
 
 - Valores possíveis: `"Espada"`, `"Escudo"`, `"Poção"`
 
@@ -42,7 +42,7 @@
 
 ### **3. Conexões:**
 
-- Conecte o **Gerador de Símbolo** ao nó **Pool Simbólica**
+- Conecte o **Gerador Simbólico** ao nó **Pool Simbólica**
 - Conecte o **Pool Simbólica** ao nó **Selecionar Símbolo Aleatório**
 - Conecte o **Selecionar Símbolo Aleatório** ao nó **Histograma**
 

@@ -32,7 +32,7 @@
 
 **Scenario:** In a card game, a player receives 3 random cards from a symbolic pool containing "Sword", "Shield", and "Potion". For each simulation, only **one of the symbols** is randomly selected as the main action.
 
-### **1. Symbol Generator Node Properties:**
+### **1. Symbolic Generator Node Properties:**
 
 - Possible values: `"Sword"`, `"Shield"`, `"Potion"`
 
@@ -42,7 +42,7 @@
 
 ### **3. Connections:**
 
-- Connect the **Symbol Generator** to the **Symbolic Pool** node
+- Connect the **Symbolic Generator** to the **Symbolic Pool** node
 - Connect the **Symbolic Pool** node to the **Select Random Symbol** node
 - Connect the **Select Random Symbol** node to the **Histogram** node
 
