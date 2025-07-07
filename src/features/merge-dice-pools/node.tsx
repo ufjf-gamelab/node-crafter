@@ -1,11 +1,11 @@
 import React from "react";
 import { Position, NodeProps } from "@xyflow/react";
-import { ISelectRandomDiceNode } from "@/config/types";
+import { IMergeDicePoolsNode } from "@/config/types";
 import { GiRollingDices } from "react-icons/gi";
 import { BaseNode } from "@/components/ui/base-node";
 import { NodeHandle } from "@/components/ui/node-handle";
 
-type IProps = NodeProps<ISelectRandomDiceNode>;
+type IProps = NodeProps<IMergeDicePoolsNode>;
 
 export const MergeDicePoolsNode: React.ComponentType<IProps> = ({ data, selected, isConnectable, id }) => {
   return (
