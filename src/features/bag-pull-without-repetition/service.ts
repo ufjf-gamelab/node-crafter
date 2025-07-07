@@ -13,7 +13,7 @@ export const BagPullWithoutRepetitionService: INodeService<IBagPullWithoutRepeti
         name: i18n.t("nodeShortName.bagPullWithoutRepetition"),
         status: "IDLE",
         inputType: "symbolicGenerator",
-        outputType: "symbolic",
+        outputType: "symbolicPool",
       },
     };
   },
@@ -29,7 +29,7 @@ export const BagPullWithoutRepetitionService: INodeService<IBagPullWithoutRepeti
 };
 
 function pullBagWithoutRepetition(balls: string[]) {
-  const result: string[] = [];
+  const result: string[][] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
     const bolasEmbaralhadas = [...balls];
@@ -38,7 +38,7 @@ function pullBagWithoutRepetition(balls: string[]) {
       [bolasEmbaralhadas[j], bolasEmbaralhadas[k]] = [bolasEmbaralhadas[k], bolasEmbaralhadas[j]];
     }
 
-    result.push(bolasEmbaralhadas.join("-"));
+    result.push(bolasEmbaralhadas);
   }
 
   return result;

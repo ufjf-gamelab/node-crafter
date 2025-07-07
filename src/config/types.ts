@@ -12,7 +12,7 @@ export type INodeStateMap = {
   diceBetweenInterval: number[];
   diceCountRepetition: number[];
   diceExplode: number[];
-  bagPullWithoutRepetition: string[];
+  bagPullWithoutRepetition: string[][];
   symbolicGenerator: string[];
   symbolicPool: string[][];
   diceMath: number[];
