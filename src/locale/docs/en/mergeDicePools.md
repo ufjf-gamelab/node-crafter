@@ -1,5 +1,3 @@
-# **Merge Dice Pools**
-
 **Merge Dice Pools** is a **modifier-type node** used to combine two **numeric input pools** into a single **output pool**. It merges the values of both pools, preserving the simultaneous rolls in a unified group. This allows modeling situations where different types of dice should be treated as one combined set.
 
 - **Type:** Modifier (intermediate node)

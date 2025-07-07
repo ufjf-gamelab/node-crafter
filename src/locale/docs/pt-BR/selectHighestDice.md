@@ -1,5 +1,3 @@
-# **Selecionar Maior Dado**
-
 **Selecionar Maior Dado** é um **nó do tipo modificador** utilizado para transformar uma **pool numérica** em uma **lista simples contendo apenas o maior valor de cada jogada**. Sua principal função é filtrar a pool e manter apenas o maior resultado em cada simulação, sendo útil em situações onde se deseja considerar apenas o melhor valor entre múltiplas rolagens.
 
 - **Tipo:** Modificador (nó intermediário)

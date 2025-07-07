@@ -1,5 +1,3 @@
-# **Dice Pool**
-
 **Dice Pool** is a **modifier-type node** used to generate a **numeric pool** from a **numeric generator node input**. It represents multiple simultaneous rolls of the same type of dice and is ideal for systems that require grouping random values, such as multi-dice rolls.
 
 - **Type:** Modifier (intermediate node)

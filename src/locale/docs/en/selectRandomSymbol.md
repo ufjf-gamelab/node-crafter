@@ -1,5 +1,3 @@
-# **Select Random Symbol**
-
 **Select Random Symbol** is a **modifier-type node** used to transform a **Symbolic Pool** (composed of text values) into a **simple list containing only one value per simulation**, selected randomly. Its main function is to filter the multiple values within a symbolic pool into a single representative result per simulation while preserving randomness.
 
 - **Type:** Modifier (intermediate node)
