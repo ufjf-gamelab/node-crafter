@@ -15,6 +15,7 @@ import "@mantine/core/styles.css";
 import "@mantine/charts/styles.css";
 import "@mantine/notifications/styles.css";
 import { StrictMode } from "react";
+import { DocumentationProvider } from "./contexts/documentation-context.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,8 +23,10 @@ createRoot(document.getElementById("root")!).render(
       <ReactFlowProvider>
         <LayoutProvider>
           <SimulationProvider>
-            <App />
-            <Notifications position="top-center" autoClose={5000} classNames={{ notification: "border border-gray-300 shadow-md" }} />
+            <DocumentationProvider>
+              <App />
+              <Notifications position="top-center" autoClose={5000} classNames={{ notification: "border border-gray-300 shadow-md" }} />
+            </DocumentationProvider>
           </SimulationProvider>
         </LayoutProvider>
       </ReactFlowProvider>

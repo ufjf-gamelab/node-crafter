@@ -1,12 +1,12 @@
 import React from "react";
-import { useReactFlow } from "@xyflow/react";
 import { useDebounce } from "react-use";
-import { INode } from "@/config/types";
-import { Button, Modal, ScrollArea, TextInput } from "@mantine/core";
-import { NodeDoc } from "./node-doc";
-import { BiSolidCog, BiSolidHelpCircle } from "react-icons/bi";
-import { useElementSize } from "@mantine/hooks";
+import { useReactFlow } from "@xyflow/react";
 import { useTranslation } from "react-i18next";
+import { useElementSize } from "@mantine/hooks";
+import { useDocumentationContext } from "@/contexts/documentation-context";
+import { Button, ScrollArea, TextInput } from "@mantine/core";
+import { BiSolidCog, BiSolidHelpCircle } from "react-icons/bi";
+import { INode } from "@/config/types";
 
 type IProps = {
   node: INode;
@@ -18,7 +18,7 @@ export const BaseNodeProperties: React.FunctionComponent<IProps> = ({ node, chil
   const { t } = useTranslation();
   const { ref: titleElRef, height: titleHeight } = useElementSize();
   const [name, setName] = React.useState(node.data.name);
-  const [helpModal, setHelpModal] = React.useState(false);
+  const { openDoc } = useDocumentationContext();
 
   useDebounce(() => flow.updateNodeData(node.id, { ...node.data, name }), 500, [name]);
 
@@ -61,20 +61,11 @@ export const BaseNodeProperties: React.FunctionComponent<IProps> = ({ node, chil
           variant="default"
           className="w-full border-x-0 focus:outline-1 outline-offset-0"
           radius="0"
-          onClick={() => setHelpModal(true)}
+          onClick={() => openDoc(node.type)}
           leftSection={<BiSolidHelpCircle className="text-slate-700 text-[22px]" />}>
           {t("nodeProperties.help")}
         </Button>
       </ScrollArea>
-
-      <Modal
-        size="xl"
-        title={t(`nodeFullName.${node.type}`)}
-        opened={helpModal}
-        onClose={() => setHelpModal(false)}
-        classNames={{ title: "text-3xl font-semibold" }}>
-        <NodeDoc nodeType={node.type} />
-      </Modal>
     </div>
   );
 };
