@@ -6,16 +6,12 @@ import { TaskBar } from "./components/layout/task-bar";
 import { AsideNodeProperties } from "@/components/layout/aside-node-properties";
 import "@/config/i18n";
 
-import { INodeType, INode, IEdge, IIntegerValueNode } from "@/config/types";
+import { INode, IEdge, IIntegerValueNode } from "@/config/types";
 
 function App() {
   const flow = useReactFlow<INode, IEdge>();
   const [edges, setEdges, onEdgesChange] = useEdgesState<IEdge>([]);
   const [nodes, setNodes, onNodesChange] = useNodesState<INode>([]);
-
-  function addNewNode(type: INodeType) {
-    setNodes([...nodes, NodeManager.new(type, flow)]);
-  }
 
   const onConnect = React.useCallback(
     (params: Connection) => {
@@ -69,7 +65,7 @@ function App() {
 
   return (
     <div className="relative">
-      <Sidebar addNewNode={addNewNode} />
+      <Sidebar />
       <AsideNodeProperties />
       <TaskBar />
 

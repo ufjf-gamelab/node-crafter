@@ -30,7 +30,8 @@
   "sidebar": {
     "clearTooltip": "Limpar todos nós",
     "english": "Inglês",
-    "portuguese": "Português"
+    "portuguese": "Português",
+    "helpTooltip": "Abrir documentação do nó"
   },
   "taskBar": {
     "start": "Iniciar",

@@ -30,7 +30,8 @@
   "sidebar": {
     "clearTooltip": "Clear all nodes",
     "english": "English",
-    "portuguese": "Portuguese"
+    "portuguese": "Portuguese",
+    "helpTooltip": "Open node documentation"
   },
   "taskBar": {
     "start": "Start",
