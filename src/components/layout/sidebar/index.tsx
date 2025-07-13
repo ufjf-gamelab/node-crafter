@@ -6,13 +6,11 @@ import { VscTrash } from "react-icons/vsc";
 import { BiMath, BiWorld } from "react-icons/bi";
 import { useReactFlow } from "@xyflow/react";
 import { useTranslation } from "react-i18next";
-import { IEdge, INode, INodeType } from "@/config/types";
+import { IEdge, INode } from "@/config/types";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { SidebarItem } from "./sidebar-item";
 
-type IProps = { addNewNode: (type: INodeType) => void };
-
-const Sidebar: FunctionComponent<IProps> = ({}) => {
+const Sidebar: FunctionComponent = () => {
   const flow = useReactFlow<INode, IEdge>();
   const { t, i18n } = useTranslation();
 

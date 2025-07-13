@@ -53,11 +53,7 @@
 }
 
 .react-flow-board .react-flow__handle-left {
-  // transform: translate(-35%, -50%);
   border-width: 1px;
-}
-.react-flow-board .react-flow__handle-right {
-  // transform: translate(65%, -50%);
 }
 
 .react-flow__handle.connectionindicator:hover {
@@ -65,9 +61,13 @@
   background-color: rgb(80, 80, 80);
 }
 
+text.recharts-text.recharts-cartesian-axis-tick-value {
+  font-size: 14px;
+}
+
 .markdown {
   @apply text-slate-800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
   h1 {
     font-size: 1.5rem;
@@ -78,11 +78,13 @@
   h2 {
     font-size: 1.3rem;
     margin: 0.75rem 0;
+    font-weight: 400;
   }
 
   h3 {
-    font-size: 1rem;
-    margin: 0.75rem 0;
+    font-size: 1.2rem;
+    margin: 0.6rem 0;
+    font-weight: 400;
   }
 
   strong {

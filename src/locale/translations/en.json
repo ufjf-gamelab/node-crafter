@@ -19,6 +19,10 @@
     "duplicate": "Duplicate",
     "delete": "Delete"
   },
+  "introductionDoc": {
+    "modalTitle": "Introduction to Node Crafter",
+    "buttonTooltip": "General help"
+  },
   "errors": {
     "tryingToRunSimulationsTitle": "Error trying to run simulations!",
     "sourceNotFound": "Source connection not found.",

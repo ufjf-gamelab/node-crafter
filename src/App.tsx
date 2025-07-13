@@ -4,6 +4,7 @@ import { NodeManager } from "@/utils/node-manager";
 import { Sidebar } from "@/components/layout/sidebar";
 import { TaskBar } from "./components/layout/task-bar";
 import { AsideNodeProperties } from "@/components/layout/aside-node-properties";
+import { HelpIntroduction } from "./components/layout/help-introduction";
 import "@/config/i18n";
 
 import { INode, IEdge, IIntegerValueNode } from "@/config/types";
@@ -68,6 +69,7 @@ function App() {
       <Sidebar />
       <AsideNodeProperties />
       <TaskBar />
+      <HelpIntroduction />
 
       <main className="w-screen h-screen">
         <ReactFlow
