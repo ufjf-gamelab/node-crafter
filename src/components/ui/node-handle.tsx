@@ -79,7 +79,7 @@ const NodeHandle: React.FunctionComponent<IProps> = ({ type, dataType = "any", .
               <span className="text-[5px] -mt-1">Gen</span>
             </div>
           )}
-          {dataType === "symbolicPool" && (
+          {dataType === "symbolicGeneratorPool" && (
             <div className="w-full relative flex items-center">
               <BiText className="absolute w-[8px] ml-[0.5px] left-1/2 -translate-x-1/2" />
               <PiRectangleDashedLight className="w-full rotate-90" />

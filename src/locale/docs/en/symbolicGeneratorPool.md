@@ -1,4 +1,4 @@
-**Symbolic Pool** is a **modifier-type node** used to group the results of two **Symbolic Generator** nodes into a single set. It allows combining parallel symbolic executions, such as drawing two different symbols in a single turn.
+**Symbolic Generator Pool** is a **modifier-type node** used to group the results of two **Symbolic Generator** nodes into a single set. It allows combining parallel symbolic executions, such as drawing two different symbols in a single turn.
 
 - **Type:** Modifier (intermediate node)
 - **Function:** Groups the values of two symbolic nodes into a single set
@@ -23,7 +23,7 @@
 ### **Name**
 
 - **Type:** Text
-- **Default:** Symbolic Pool
+- **Default:** Symbolic Generator Pool
 - **Function:** Name displayed on the modeling board
 
 ---
@@ -39,11 +39,11 @@
 
 ### **2. Node Connections:**
 
-- Connect **Symbolic Generator A** to the **Symbolic Pool** node
-- Connect **Symbolic Generator B** to the **Symbolic Pool** node
-- Connect the **Symbolic Pool** node to the **Histogram** node
+- Connect **Symbolic Generator A** to the **Symbolic Generator Pool** node
+- Connect **Symbolic Generator B** to the **Symbolic Generator Pool** node
+- Connect the **Symbolic Generator Pool** node to the **Histogram** node
 
-<img src="/node-crafter/doc-images/symbolic-pool.png" width="500px" alt="Example usage of the Symbolic Pool node"/>
+<img src="/node-crafter/doc-images/symbolic-generator-pool.png" width="500px" alt="Example usage of the Symbolic Generator Pool node"/>
 
 ---
 

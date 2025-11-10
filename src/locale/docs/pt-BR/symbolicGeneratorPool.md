@@ -1,4 +1,4 @@
-**Pool Simbólica** é um **nó do tipo modificador** utilizado para agrupar os resultados de dois nós **Gerador Simbólico** em um único conjunto. Ele permite combinar execuções simbólicas paralelas, como o sorteio de dois símbolos diferentes em uma única jogada.
+**Pool de Geradores Simbólicos** é um **nó do tipo modificador** utilizado para agrupar os resultados de dois nós **Gerador Simbólico** em um único conjunto. Ele permite combinar execuções simbólicas paralelas, como o sorteio de dois símbolos diferentes em uma única jogada.
 
 - **Tipo:** Modificador (nó intermediário)
 - **Função:** Agrupa os valores de dois nós simbólicos em um único conjunto
@@ -23,7 +23,7 @@
 ### **Nome**
 
 - **Tipo:** Texto
-- **Padrão:** Pool Simbólica
+- **Padrão:** Pool de Geradores Simbólicos
 - **Função:** Nome exibido no quadro de modelagem
 
 ---
@@ -39,11 +39,11 @@
 
 ### **2. Conexão com outros nós:**
 
-- Conecte o **Gerador Simbólico A** ao nó **Pool Simbólica**
-- Conecte o **Gerador Simbólico B** ao nó **Pool Simbólica**
-- Conecte a **Pool Simbólica** ao nó **Histograma**
+- Conecte o **Gerador Simbólico A** ao nó **Pool de Geradores Simbólicos**
+- Conecte o **Gerador Simbólico B** ao nó **Pool de Geradores Simbólicos**
+- Conecte a **Pool de Geradores Simbólicos** ao nó **Histograma**
 
-<img src="/node-crafter/doc-images/symbolic-pool.png" width="500px" alt="Exemplo de uso do Pool Simbólica"/>
+<img src="/node-crafter/doc-images/symbolic-generator-pool.png" width="500px" alt="Exemplo de uso do Pool de Geradores Simbólicos"/>
 
 ---
 

@@ -104,7 +104,7 @@ const Sidebar: FunctionComponent = () => {
             <ul className="flex flex-col">
               <SidebarItem nodeType="dicePool" fullName />
               <SidebarItem nodeType="mergeDicePools" fullName />
-              <SidebarItem nodeType="symbolicPool" fullName />
+              <SidebarItem nodeType="symbolicGeneratorPool" fullName />
             </ul>
           </Accordion.Panel>
         </Accordion.Item>

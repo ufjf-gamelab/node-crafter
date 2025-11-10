@@ -10,7 +10,7 @@ export const SelectRandomSymbolService: INodeService<ISelectRandomSymbolNode> = 
       data: {
         name: i18n.t("nodeShortName.selectRandomSymbol"),
         status: "IDLE",
-        inputType: "symbolicPool",
+        inputType: "symbolicGeneratorPool",
         outputType: "symbolic",
       },
     };

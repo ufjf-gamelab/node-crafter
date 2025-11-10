@@ -13,7 +13,7 @@ export const BagPullWithoutRepetitionService: INodeService<IBagPullWithoutRepeti
         name: i18n.t("nodeShortName.bagPullWithoutRepetition"),
         status: "IDLE",
         inputType: "symbolicGenerator",
-        outputType: "symbolicPool",
+        outputType: "symbolicGeneratorPool",
         pulls: 2,
       },
     };

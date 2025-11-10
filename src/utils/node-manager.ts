@@ -10,7 +10,7 @@ import { DiceCountRepetition } from "@/features/dice-count-repetition";
 import { DiceExplode } from "@/features/dice-explode";
 import { BagPullWithoutRepetition } from "@/features/bag-pull-without-repetition";
 import { SymbolicGenerator } from "@/features/symbolic-generator";
-import { SymbolicPool } from "@/features/symbolic-pool";
+import { SymbolicGeneratorPool } from "@/features/symbolic-generator-pool";
 import { DiceMath } from "@/features/dice-math";
 import { DiceAbsolute } from "@/features/dice-absolute";
 import { DiceLogical } from "@/features/dice-logical";
@@ -49,7 +49,7 @@ const NODE_MODULES = {
   valueIsOdd: ValueIsOdd,
   // pools
   dicePool: DicePool,
-  symbolicPool: SymbolicPool,
+  symbolicGeneratorPool: SymbolicGeneratorPool,
   mergeDicePools: MergeDicePools,
   // filters
   selectRandomDice: SelectRandomDice,

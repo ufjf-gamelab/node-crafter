@@ -1,17 +1,17 @@
 import { i18n } from "@/config/i18n";
-import { ISymbolicPoolNode, INodeService, ISymbolicGeneratorNode } from "@/config/types";
+import { ISymbolicGeneratorPoolNode, INodeService, ISymbolicGeneratorNode } from "@/config/types";
 
-export const SymbolicPoolService: INodeService<ISymbolicPoolNode> = {
+export const SymbolicGeneratorPoolService: INodeService<ISymbolicGeneratorPoolNode> = {
   new(_flow, { id, position }) {
     return {
       id,
       position,
-      type: "symbolicPool",
+      type: "symbolicGeneratorPool",
       data: {
-        name: i18n.t("nodeShortName.symbolicPool"),
+        name: i18n.t("nodeShortName.symbolicGeneratorPool"),
         status: "IDLE",
         inputType: "symbolicGenerator",
-        outputType: "symbolicPool",
+        outputType: "symbolicGeneratorPool",
         quantity: 2,
       },
     };
@@ -23,12 +23,12 @@ export const SymbolicPoolService: INodeService<ISymbolicPoolNode> = {
 
     const sourceState = source.state as string[];
     const sourceNode = source.node as ISymbolicGeneratorNode;
-    const resultState = getSymbolicPool(sourceState, node.data.quantity, sourceNode.data.faces);
+    const resultState = getSymbolicGeneratorPool(sourceState, node.data.quantity, sourceNode.data.faces);
     return resultState;
   },
 };
 
-export function getSymbolicPool(input: string[], quantity: number, faces: string[]) {
+export function getSymbolicGeneratorPool(input: string[], quantity: number, faces: string[]) {
   let result: string[][] = [];
 
   for (let i = 0; i < input.length; i++) {

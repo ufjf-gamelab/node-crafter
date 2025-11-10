@@ -1,12 +1,12 @@
 import React from "react";
 import { BaseNodeProperties } from "@/components/ui/base-node-properties";
-import { ISymbolicPoolNode } from "@/config/types";
+import { ISymbolicGeneratorPoolNode } from "@/config/types";
 import { useReactFlow } from "@xyflow/react";
 import { useDebounce } from "react-use";
 import { NumberInput } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 
-export const SymbolicPoolProperties: React.FunctionComponent<{ node: ISymbolicPoolNode }> = ({ node }) => {
+export const SymbolicGeneratorPoolProperties: React.FunctionComponent<{ node: ISymbolicGeneratorPoolNode }> = ({ node }) => {
   const { t } = useTranslation();
   const flow = useReactFlow();
   const [quantity, setQuantity] = React.useState(node.data.quantity);
