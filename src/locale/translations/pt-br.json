@@ -107,6 +107,7 @@
     "valueIsOdd": "É Impar",
     "bagPullWithoutRepetition": "Sacar Sem Repetição",
     "symbolicGenerator": "Simbólico",
+    "symbolicPool": "Pool Simbólico",
     "symbolicGeneratorPool": "Pool de Geradores Simbólicos",
     "integerValue": "Inteiro",
     "andLogical": "AND",
@@ -132,6 +133,7 @@
     "valueIsOdd": "Dado É Impar",
     "bagPullWithoutRepetition": "Sacar Bolsa Sem Repetição",
     "symbolicGenerator": "Gerador Simbólico",
+    "symbolicPool": "Pool Simbólico",
     "symbolicGeneratorPool": "Pool de Geradores Simbólicos",
     "integerValue": "Valor Inteiro",
     "andLogical": "AND Lógico",
@@ -157,6 +159,7 @@
     "source.symbolicGeneratorPool": "Saída pool de geradores simbólicos",
     "source.numericGenerator": "Saída gerador numérico",
     "source.symbolicGenerator": "Saída gerador simbólico",
+    "source.symbolicPool": "Saída pool simbólica",
     "target.any": "Qualquer tipo de entrada",
     "target.numeric": "Entrada numérica",
     "target.numericPool": "Entrada pool numérica",
@@ -164,6 +167,7 @@
     "target.symbolic": "Entrada simbólica",
     "target.symbolicGeneratorPool": "Entrada pool de geradores simbólicos",
     "target.numericGenerator": "Entrada gerador numérico",
-    "target.symbolicGenerator": "Entrada gerador simbólico"
+    "target.symbolicGenerator": "Entrada gerador simbólico",
+    "target.symbolicPool": "Entrada pool simbólica"
   }
 }
