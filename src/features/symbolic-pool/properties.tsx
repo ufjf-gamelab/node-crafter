@@ -55,19 +55,18 @@ export const SymbolicPoolProperties: React.FunctionComponent<IProps> = ({ node }
           {faces.map((_item, index) => (
             <div className="border-b py-2 w-full flex flex-col gap-2" key={"ball" + index}>
               <div className="w-full flex items-center justify-between gap-2">
-                <label className="w-32 font-medium flex items-center gap-2" htmlFor={"face_" + index}>
+                <label className="w-32 mt-3 font-medium flex items-center gap-2" htmlFor={"face_" + index}>
                   <Tooltip variant="" label={t("nodeProperties.removeFace")}>
                     <ActionIcon variant="light" color="red" onClick={() => removeFace(index)} disabled={index === 0 && faces.length === 1}>
                       <BiTrash />
                     </ActionIcon>
                   </Tooltip>
-                  {/*<span>Face {index + 1}</span>*/}
                 </label>
 
                 <TextInput
                   type="text"
                   id={"face_" + index}
-                  label={"Simbolo " + (index + 1)}
+                  label={t("nodeProperties.face") + " " + (index + 1)}
                   value={faces[index][0]}
                   placeholder={t("nodeProperties.facePlaceholder")}
                   onChange={(e) => handleChangeFaceName(e, index)}
