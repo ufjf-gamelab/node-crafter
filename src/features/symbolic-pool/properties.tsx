@@ -14,50 +14,50 @@ type IProps = {
 export const SymbolicPoolProperties: React.FunctionComponent<IProps> = ({ node }) => {
   const { t } = useTranslation();
   const flow = useReactFlow();
-  const [faces, setFaces] = React.useState(node.data.faces);
+  const [symbols, setSymbols] = React.useState(node.data.symbols);
 
-  function handleChangeFaceName(e: React.ChangeEvent<HTMLInputElement>, index: number) {
+  function handleChangeSymbolName(e: React.ChangeEvent<HTMLInputElement>, index: number) {
     const newValue = e.target.value || "";
-    const newFaces = [...faces];
-    newFaces[index][0] = newValue;
-    setFaces(newFaces);
-    node.data.faces = newFaces;
+    const newSymbols = [...symbols];
+    newSymbols[index][0] = newValue;
+    setSymbols(newSymbols);
+    node.data.symbols = newSymbols;
   }
 
-  function handleChangeFaceWeight(value: number | undefined, index: number) {
+  function handleChangeSymbolWeight(value: number | undefined, index: number) {
     const newValue = isNaN(Number(value)) || value === undefined ? 1 : Number(value);
-    const newFaces = [...faces];
-    newFaces[index][1] = newValue;
-    setFaces(newFaces);
-    node.data.faces = newFaces;
+    const newSymbols = [...symbols];
+    newSymbols[index][1] = newValue;
+    setSymbols(newSymbols);
+    node.data.symbols = newSymbols;
   }
 
-  function addNewFace() {
-    const newFace: [string, number] = ["", 1];
-    const newFaces = [...faces, newFace];
-    setFaces(newFaces);
-    node.data.faces = newFaces;
+  function addNewSymbol() {
+    const newSymbol: [string, number] = ["", 1];
+    const newSymbols = [...symbols, newSymbol];
+    setSymbols(newSymbols);
+    node.data.symbols = newSymbols;
   }
 
-  function removeFace(index: number) {
-    const newFaces = faces.filter((_item, sourceIndex) => sourceIndex !== index);
-    setFaces(newFaces);
-    node.data.faces = newFaces;
+  function removeSymbol(index: number) {
+    const newSymbols = symbols.filter((_item, sourceIndex) => sourceIndex !== index);
+    setSymbols(newSymbols);
+    node.data.symbols = newSymbols;
   }
 
-  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, faces }), 500, [faces]);
+  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, symbols }), 500, [symbols]);
 
   return (
     <BaseNodeProperties
       node={node}
       children={
         <>
-          {faces.map((_item, index) => (
+          {symbols.map((_item, index) => (
             <div className="border-b py-2 w-full flex flex-col gap-2" key={"ball" + index}>
               <div className="w-full flex items-center justify-between gap-2">
-                <label className="w-32 mt-3 font-medium flex items-center gap-2" htmlFor={"face_" + index}>
-                  <Tooltip variant="" label={t("nodeProperties.removeFace")}>
-                    <ActionIcon variant="light" color="red" onClick={() => removeFace(index)} disabled={index === 0 && faces.length === 1}>
+                <label className="w-32 mt-3 font-medium flex items-center gap-2" htmlFor={"symbol_" + index}>
+                  <Tooltip variant="" label={t("nodeProperties.removeSymbol")}>
+                    <ActionIcon variant="light" color="red" onClick={() => removeSymbol(index)} disabled={index === 0 && symbols.length === 1}>
                       <BiTrash />
                     </ActionIcon>
                   </Tooltip>
@@ -65,20 +65,20 @@ export const SymbolicPoolProperties: React.FunctionComponent<IProps> = ({ node }
 
                 <TextInput
                   type="text"
-                  id={"face_" + index}
-                  label={t("nodeProperties.face") + " " + (index + 1)}
-                  value={faces[index][0]}
-                  placeholder={t("nodeProperties.facePlaceholder")}
-                  onChange={(e) => handleChangeFaceName(e, index)}
+                  id={"symbol_" + index}
+                  label={t("nodeProperties.symbol") + " " + (index + 1)}
+                  value={symbols[index][0]}
+                  placeholder={t("nodeProperties.symbolPlaceholder")}
+                  onChange={(e) => handleChangeSymbolName(e, index)}
                 />
 
-                <NumberInput label={t("nodeProperties.quantity")} value={faces[index][1]} onChange={(value) => handleChangeFaceWeight(Number(value), index)} />
+                <NumberInput label={t("nodeProperties.quantity")} value={symbols[index][1]} onChange={(value) => handleChangeSymbolWeight(Number(value), index)} />
               </div>
             </div>
           ))}
 
-          <Button color="blue" variant="light" leftSection={<BiPlus className="text-lg " />} size="sm" onClick={addNewFace}>
-            {t("nodeProperties.addNewFace")}
+          <Button color="blue" variant="light" leftSection={<BiPlus className="text-lg " />} size="sm" onClick={addNewSymbol}>
+            {t("nodeProperties.addNewSymbol")}
           </Button>
         </>
       }

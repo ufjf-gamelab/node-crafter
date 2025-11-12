@@ -10,34 +10,34 @@ export const SymbolicPoolService: INodeService<ISymbolicPoolNode> = {
       data: {
         name: i18n.t("nodeShortName.symbolicPool"),
         status: "IDLE",
-        faces: [["A", 1], ["B", 1]],
+        symbols: [["A", 1], ["B", 1]],
         outputType: "symbolicPool",
       },
     };
   },
 
   run({ node, iterations }) {
-    const resultState = generateRandomSymbolicData(node.data.faces, iterations);
+    const resultState = generateRandomSymbolicData(node.data.symbols, iterations);
     return resultState;
   },
 };
 
-function generateRandomSymbolicData(faces: [string, number][], iterations: number) {
-  const weightedFaces: string[] = [];
-  faces.forEach(([face, weight]) => {
+function generateRandomSymbolicData(symbols: [string, number][], iterations: number) {
+  const weightedSymbols: string[] = [];
+  symbols.forEach(([symbol, weight]) => {
     for (let i = 0; i < weight; i++) {
-      weightedFaces.push(face);
+      weightedSymbols.push(symbol);
     }
   });
 
   const randomData: number[] = [];
   for (let i = 0; i < iterations; i++) {
-    randomData.push(parseInt(Math.floor(Math.random() * weightedFaces.length + 1).toString()));
+    randomData.push(parseInt(Math.floor(Math.random() * weightedSymbols.length + 1).toString()));
   }
 
   const result: string[] = [];
   randomData.forEach((data) => {
-    const itemFound = weightedFaces.find((_item, index) => index + 1 === data);
+    const itemFound = weightedSymbols.find((_item, index) => index + 1 === data);
     itemFound && result.push(itemFound);
   });
 
