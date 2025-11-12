@@ -61,12 +61,13 @@ export const SymbolicPoolProperties: React.FunctionComponent<IProps> = ({ node }
                       <BiTrash />
                     </ActionIcon>
                   </Tooltip>
-                  <span>Face {index + 1}</span>
+                  {/*<span>Face {index + 1}</span>*/}
                 </label>
 
                 <TextInput
                   type="text"
                   id={"face_" + index}
+                  label={"Simbolo " + (index + 1)}
                   value={faces[index][0]}
                   placeholder={t("nodeProperties.facePlaceholder")}
                   onChange={(e) => handleChangeFaceName(e, index)}

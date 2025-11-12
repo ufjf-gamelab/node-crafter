@@ -15,7 +15,7 @@ export const SymbolicPoolNode: React.ComponentType<IProps> = ({ data, isConnecta
       selected={selected}
       name={data.name}
       status={data.status}
-      label={data.faces.length + " faces"}
+      label={data.faces.length + " simbolos"}
       icon={
         <>
           <GiPerspectiveDiceSixFacesRandom />
