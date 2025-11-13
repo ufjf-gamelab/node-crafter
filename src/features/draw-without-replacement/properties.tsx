@@ -9,20 +9,20 @@ import { useTranslation } from "react-i18next";
 export const DrawWithoutReplacementProperties: React.FunctionComponent<{ node: IDrawWithoutReplacementNode }> = ({ node }) => {
   const { t } = useTranslation();
   const flow = useReactFlow();
-  const [draws, setDraws] = React.useState(node.data.draws);
+  const [drawAmount, setDrawAmount] = React.useState(node.data.drawAmount);
 
   function handleChangeExplodeFace(value: string | number) {
     const newValue = isNaN(Number(value)) ? 1 : Number(value);
-    setDraws(newValue);
-    node.data.draws = newValue;
+    setDrawAmount(newValue);
+    node.data.drawAmount = newValue;
   }
 
-  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, draws }), 500, [draws]);
+  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, drawAmount }), 500, [drawAmount]);
 
   return (
     <BaseNodeProperties
       node={node}
-      children={<NumberInput label={t("nodeProperties.draws")} value={draws} min={1} onChange={handleChangeExplodeFace} />}
+      children={<NumberInput label={t("nodeProperties.drawAmount")} value={drawAmount} min={1} onChange={handleChangeExplodeFace} />}
     />
   );
 };
