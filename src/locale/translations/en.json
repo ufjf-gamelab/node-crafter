@@ -78,6 +78,7 @@
     "Faces": "Faces",
     "symbol": "Symbol",
     "symbols": "Symbols",
+    "draws": "Number of draws",
     "addNewSymbol": "Add new symbol",
     "removeSymbol": "Remove symbol",
     "explodeFace": "Explode face",

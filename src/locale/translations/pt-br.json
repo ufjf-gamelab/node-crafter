@@ -78,6 +78,7 @@
     "Faces": "Faces",
     "symbol": "Símbolo",
     "symbols": "Símbolos",
+    "draws": "Quantidade de saques",
     "addNewSymbol": "Adicionar novo símbolo",
     "removeSymbol": "Remover símbolo",
     "explodeFace": "Face de explosão",
