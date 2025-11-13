@@ -13,7 +13,7 @@ export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacement
         name: i18n.t("nodeShortName.drawWithoutReplacement"),
         status: "IDLE",
         inputType: "symbolicPool",
-        outputType: "symbolicGeneratorPool",
+        outputType: "symbolicPool",
         drawAmount: 2,
       },
     };
@@ -32,25 +32,31 @@ export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacement
         weightedSymbols.push(symbol);
       }
     });
-    const resultState = pullBagWithoutRepetition(weightedSymbols, node.data.drawAmount);
+    const resultState = drawWithoutReplacement(weightedSymbols, node.data.drawAmount);
     return resultState;
   },
 };
 
-function pullBagWithoutRepetition(symbols: string[], drawAmount: number) {
-  const result: string[][] = [];
+function drawWithoutReplacement(symbols: string[], drawAmount: number, orderMatters = false) {
+  const result: string[] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
     const bag = [...symbols];
-    const pulledValues: string[] = [];
+    const drawnValues: string[] = [];
 
     for (let j = 0; j < drawAmount; j++) {
-      const pulledFace = bag[Math.floor(Math.random() * bag.length)];
-      pulledValues.push(pulledFace);
-      bag.splice(bag.indexOf(pulledFace), 1);
+      const drawnSymbol = bag[Math.floor(Math.random() * bag.length)];
+      drawnValues.push(drawnSymbol);
+      bag.splice(bag.indexOf(drawnSymbol), 1);
     }
-
-    result.push(pulledValues);
+    let drawnHand = "";
+    if (orderMatters)
+      drawnHand = drawnValues.join(", ");
+    else {
+      const sortedValues = drawnValues.sort();
+      drawnHand = sortedValues.join(", ");
+    }
+    result.push(drawnHand);
   }
 
   return result;
