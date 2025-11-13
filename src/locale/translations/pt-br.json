@@ -79,6 +79,7 @@
     "symbol": "Símbolo",
     "symbols": "Símbolos",
     "drawAmount": "Quantidade de saques",
+    "orderMatters": "A ordem importa?",
     "addNewSymbol": "Adicionar novo símbolo",
     "removeSymbol": "Remover símbolo",
     "explodeFace": "Face de explosão",

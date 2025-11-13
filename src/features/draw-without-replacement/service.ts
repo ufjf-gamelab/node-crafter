@@ -15,6 +15,7 @@ export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacement
         inputType: "symbolicPool",
         outputType: "symbolicPool",
         drawAmount: 2,
+        orderMatters: false,
       },
     };
   },
@@ -32,12 +33,12 @@ export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacement
         weightedSymbols.push(symbol);
       }
     });
-    const resultState = drawWithoutReplacement(weightedSymbols, node.data.drawAmount);
+    const resultState = drawWithoutReplacement(weightedSymbols, node.data.drawAmount, node.data.orderMatters);
     return resultState;
   },
 };
 
-function drawWithoutReplacement(symbols: string[], drawAmount: number, orderMatters = false) {
+function drawWithoutReplacement(symbols: string[], drawAmount: number, orderMatters: boolean) {
   const result: string[] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
