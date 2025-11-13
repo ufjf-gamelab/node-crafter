@@ -72,7 +72,7 @@ export const SymbolicPoolProperties: React.FunctionComponent<IProps> = ({ node }
                   onChange={(e) => handleChangeSymbolName(e, index)}
                 />
 
-                <NumberInput label={t("nodeProperties.quantity")} value={symbols[index][1]} onChange={(value) => handleChangeSymbolWeight(Number(value), index)} />
+                <NumberInput label={t("nodeProperties.quantity")} value={symbols[index][1]} min={1} onChange={(value) => handleChangeSymbolWeight(Number(value), index)} />
               </div>
             </div>
           ))}
