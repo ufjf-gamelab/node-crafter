@@ -16,7 +16,7 @@ export const DrawsUntilService: INodeService<IDrawsUntilNode> = {
         outputType: "numericPool",
         drawAmount: 2,
         replacement: false,
-        objective: []
+        objectives: [{symbol: "A", count: 1}]
       },
     };
   },

@@ -81,6 +81,8 @@
     "drawAmount": "Number of draws",
     "orderMatters": "Does the order matter?",
     "replacement": "With replacement?",
+    "objectives": "Stop conditions",
+    "addNewObjective": "Add new stop condition",
     "addNewSymbol": "Add new symbol",
     "removeSymbol": "Remove symbol",
     "explodeFace": "Explode face",

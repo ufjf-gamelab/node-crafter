@@ -81,6 +81,8 @@
     "drawAmount": "Quantidade de saques",
     "orderMatters": "A ordem importa?",
     "replacement": "Com reposição?",
+    "objectives": "Condições de parada",
+    "addNewObjective": "Adicionar nova condição",
     "addNewSymbol": "Adicionar novo símbolo",
     "removeSymbol": "Remover símbolo",
     "explodeFace": "Face de explosão",
