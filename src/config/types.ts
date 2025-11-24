@@ -13,7 +13,7 @@ export type INodeStateMap = {
   diceCountRepetition: number[];
   diceExplode: number[];
   bagPullWithoutRepetition: string[][];
-  drawWithoutReplacement: string[];
+  drawSymbols: string[];
   symbolicGenerator: string[];
   symbolicPool: string[];
   symbolicGeneratorPool: string[][];
@@ -67,7 +67,7 @@ export type IDiceBetweenIntervalNode = IBaseNode<{ min: number; max: number }, "
 export type IDiceCountRepetitionNode = IBaseNode<{ face: string }, "diceCountRepetition">;
 export type IDiceExplodeNode = IBaseNode<{ explodeFace: number }, "diceExplode">;
 export type IBagPullWithoutRepetitionNode = IBaseNode<{ pulls: number }, "bagPullWithoutRepetition">;
-export type IDrawWithoutReplacementNode = IBaseNode<{ drawAmount: number; orderMatters: boolean }, "drawWithoutReplacement">;
+export type IDrawSymbolsNode = IBaseNode<{ drawAmount: number; orderMatters: boolean }, "drawSymbols">;
 export type ISymbolicGeneratorNode = IBaseNode<{ faces: string[] }, "symbolicGenerator">;
 export type ISymbolicPoolNode = IBaseNode<{ symbols: [string, number][] }, "symbolicPool">;
 export type ISymbolicGeneratorPoolNode = IBaseNode<{ quantity: number }, "symbolicGeneratorPool">;
@@ -94,7 +94,7 @@ export type INode =
   | IDiceCountRepetitionNode
   | IDiceExplodeNode
   | IBagPullWithoutRepetitionNode
-  | IDrawWithoutReplacementNode
+  | IDrawSymbolsNode
   | ISymbolicGeneratorNode
   | ISymbolicPoolNode
   | ISymbolicGeneratorPoolNode

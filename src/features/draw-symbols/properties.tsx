@@ -3,10 +3,10 @@ import { useDebounce } from "react-use";
 import { useReactFlow } from "@xyflow/react";
 import { NumberInput, Checkbox} from "@mantine/core";
 import { BaseNodeProperties } from "@/components/ui/base-node-properties";
-import { IDrawWithoutReplacementNode } from "@/config/types";
+import { IDrawSymbolsNode } from "@/config/types";
 import { useTranslation } from "react-i18next";
 
-export const DrawWithoutReplacementProperties: React.FunctionComponent<{ node: IDrawWithoutReplacementNode }> = ({ node }) => {
+export const DrawSymbolsProperties: React.FunctionComponent<{ node: IDrawSymbolsNode }> = ({ node }) => {
   const { t } = useTranslation();
   const flow = useReactFlow();
   const [drawAmount, setDrawAmount] = React.useState(node.data.drawAmount);

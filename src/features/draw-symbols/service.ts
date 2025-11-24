@@ -1,16 +1,16 @@
 import { i18n } from "@/config/i18n";
-import { ISymbolicPoolNode, IDrawWithoutReplacementNode, INodeService } from "@/config/types";
+import { ISymbolicPoolNode, IDrawSymbolsNode, INodeService } from "@/config/types";
 
 const TOTAL_SIMULATIONS = 10000;
 
-export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacementNode> = {
+export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
   new(_flow, { id, position }) {
     return {
       id,
       position,
-      type: "drawWithoutReplacement",
+      type: "drawSymbols",
       data: {
-        name: i18n.t("nodeShortName.drawWithoutReplacement"),
+        name: i18n.t("nodeShortName.drawSymbols"),
         status: "IDLE",
         inputType: "symbolicPool",
         outputType: "symbolicPool",
@@ -33,12 +33,12 @@ export const DrawWithoutReplacementService: INodeService<IDrawWithoutReplacement
         weightedSymbols.push(symbol);
       }
     });
-    const resultState = drawWithoutReplacement(weightedSymbols, node.data.drawAmount, node.data.orderMatters);
+    const resultState = drawSymbols(weightedSymbols, node.data.drawAmount, node.data.orderMatters);
     return resultState;
   },
 };
 
-function drawWithoutReplacement(symbols: string[], drawAmount: number, orderMatters: boolean) {
+function drawSymbols(symbols: string[], drawAmount: number, orderMatters: boolean) {
   const result: string[] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {

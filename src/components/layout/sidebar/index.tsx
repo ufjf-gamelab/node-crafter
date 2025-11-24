@@ -106,7 +106,7 @@ const Sidebar: FunctionComponent = () => {
               <SidebarItem nodeType="mergeDicePools" fullName />
               <SidebarItem nodeType="symbolicGeneratorPool" fullName />
               <SidebarItem nodeType="symbolicPool" fullName />
-              <SidebarItem nodeType="drawWithoutReplacement" fullName />
+              <SidebarItem nodeType="drawSymbols" fullName />
             </ul>
           </Accordion.Panel>
         </Accordion.Item>
