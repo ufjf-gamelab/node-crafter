@@ -26,7 +26,8 @@ export const DrawsUntilService: INodeService<IDrawsUntilNode> = {
     if (!source) throw new Error("Source connection state not found!");
 
     const sourceNode = source.node as ISymbolicPoolNode;
-    if (sourceNode.data.symbols.length < node.data.drawAmount && !node.data.replacement) throw new Error(i18n.t("errors.pullsGreaterThanFaces"));
+    
+    
 
     const weightedSymbols: string[] = [];
     sourceNode.data.symbols.forEach(([symbol, weight]) => {
@@ -34,26 +35,53 @@ export const DrawsUntilService: INodeService<IDrawsUntilNode> = {
         weightedSymbols.push(symbol);
       }
     });
-    const resultState = drawsUntil(weightedSymbols, node.data.drawAmount, node.data.replacement);
+    if (!isOperationPossible(node.data.objectives, node.data.drawAmount, weightedSymbols, node.data.replacement)) {
+      throw new Error(i18n.t("errors.drawsUntilImpossible"));
+    }
+    const resultState = drawsUntil(weightedSymbols, node.data.drawAmount, node.data.replacement, node.data.objectives);
     return resultState;
   },
 };
 
-function drawsUntil(symbols: string[], drawAmount: number, replacement: boolean) {
+function drawsUntil(symbols: string[], drawAmount: number, replacement: boolean, objectives: { symbol: string; count: number }[]) {
   const result: number[] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
-    const bag = [...symbols];
-    const drawnValues: string[] = [];
+    let count = 0;
+    const conditionsCount = new Array(objectives.length).fill(0);
+    const conditionsMet = () => objectives.every((obj, index) => conditionsCount[index] >= obj.count);
+    while (!conditionsMet()) {
+      count++;
+      const drawnValues: string[] = [];
+      
+      const bag = [...symbols];
+      for (let j = 0; j < drawAmount; j++) {
+        const drawnSymbol = bag[Math.floor(Math.random() * bag.length)];
+        drawnValues.push(drawnSymbol);
+        if (!replacement)
+          bag.splice(bag.indexOf(drawnSymbol), 1);
+      }
 
-    for (let j = 0; j < drawAmount; j++) {
-      const drawnSymbol = bag[Math.floor(Math.random() * bag.length)];
-      drawnValues.push(drawnSymbol);
-      if (!replacement)
-        bag.splice(bag.indexOf(drawnSymbol), 1);
+      // Update conditions count
+      objectives.forEach((obj, index) => {
+        const drawnCount = drawnValues.filter(s => s === obj.symbol).length;
+        conditionsCount[index] += drawnCount;
+      });
     }
-    result.push(0);
+    result.push(count);
   }
 
   return result;
+}
+
+function isOperationPossible(objectives: { symbol: string; count: number }[], drawAmount:number, symbols: string[], replacement: boolean) {
+  for (const objective of objectives) {
+    if (!symbols.includes(objective.symbol)) {
+      return false;
+    }
+    if (!replacement && symbols.length < drawAmount) {
+      return false;
+    }
+  }
+  return true;
 }
