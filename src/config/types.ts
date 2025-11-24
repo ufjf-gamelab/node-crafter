@@ -14,6 +14,7 @@ export type INodeStateMap = {
   diceExplode: number[];
   bagPullWithoutRepetition: string[][];
   drawSymbols: string[];
+  drawsUntil: number[];
   symbolicGenerator: string[];
   symbolicPool: string[];
   symbolicGeneratorPool: string[][];
@@ -68,6 +69,7 @@ export type IDiceCountRepetitionNode = IBaseNode<{ face: string }, "diceCountRep
 export type IDiceExplodeNode = IBaseNode<{ explodeFace: number }, "diceExplode">;
 export type IBagPullWithoutRepetitionNode = IBaseNode<{ pulls: number }, "bagPullWithoutRepetition">;
 export type IDrawSymbolsNode = IBaseNode<{ drawAmount: number; orderMatters: boolean; replacement: boolean }, "drawSymbols">;
+export type IDrawsUntilNode = IBaseNode<{ drawAmount: number; replacement: boolean, objective: { symbol:string, count:number }[] }, "drawsUntil">;
 export type ISymbolicGeneratorNode = IBaseNode<{ faces: string[] }, "symbolicGenerator">;
 export type ISymbolicPoolNode = IBaseNode<{ symbols: [string, number][] }, "symbolicPool">;
 export type ISymbolicGeneratorPoolNode = IBaseNode<{ quantity: number }, "symbolicGeneratorPool">;
@@ -95,6 +97,7 @@ export type INode =
   | IDiceExplodeNode
   | IBagPullWithoutRepetitionNode
   | IDrawSymbolsNode
+  | IDrawsUntilNode
   | ISymbolicGeneratorNode
   | ISymbolicPoolNode
   | ISymbolicGeneratorPoolNode

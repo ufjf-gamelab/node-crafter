@@ -10,6 +10,7 @@ import { DiceCountRepetition } from "@/features/dice-count-repetition";
 import { DiceExplode } from "@/features/dice-explode";
 import { BagPullWithoutRepetition } from "@/features/bag-pull-without-repetition";
 import { DrawSymbols } from "@/features/draw-symbols";
+import { DrawsUntil } from "@/features/draws-until";
 import { SymbolicGenerator } from "@/features/symbolic-generator";
 import { SymbolicPool } from "@/features/symbolic-pool";
 import { SymbolicGeneratorPool } from "@/features/symbolic-generator-pool";
@@ -35,6 +36,7 @@ const NODE_MODULES = {
   symbolicGenerator: SymbolicGenerator,
   bagPullWithoutRepetition: BagPullWithoutRepetition,
   drawSymbols: DrawSymbols,
+  drawsUntil: DrawsUntil,
   // operations
   diceMath: DiceMath,
   diceCountRepetition: DiceCountRepetition,
