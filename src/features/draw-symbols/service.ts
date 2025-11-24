@@ -16,6 +16,7 @@ export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
         outputType: "symbolicPool",
         drawAmount: 2,
         orderMatters: false,
+        replacement: false
       },
     };
   },
@@ -25,7 +26,7 @@ export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
     if (!source) throw new Error("Source connection state not found!");
 
     const sourceNode = source.node as ISymbolicPoolNode;
-    if (sourceNode.data.symbols.length < node.data.drawAmount) throw new Error(i18n.t("errors.pullsGreaterThanFaces"));
+    if (sourceNode.data.symbols.length < node.data.drawAmount && !node.data.replacement) throw new Error(i18n.t("errors.pullsGreaterThanFaces"));
 
     const weightedSymbols: string[] = [];
     sourceNode.data.symbols.forEach(([symbol, weight]) => {
@@ -33,12 +34,12 @@ export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
         weightedSymbols.push(symbol);
       }
     });
-    const resultState = drawSymbols(weightedSymbols, node.data.drawAmount, node.data.orderMatters);
+    const resultState = drawSymbols(weightedSymbols, node.data.drawAmount, node.data.orderMatters, node.data.replacement);
     return resultState;
   },
 };
 
-function drawSymbols(symbols: string[], drawAmount: number, orderMatters: boolean) {
+function drawSymbols(symbols: string[], drawAmount: number, orderMatters: boolean, replacement: boolean) {
   const result: string[] = [];
 
   for (let i = 0; i < TOTAL_SIMULATIONS; i++) {
@@ -48,7 +49,8 @@ function drawSymbols(symbols: string[], drawAmount: number, orderMatters: boolea
     for (let j = 0; j < drawAmount; j++) {
       const drawnSymbol = bag[Math.floor(Math.random() * bag.length)];
       drawnValues.push(drawnSymbol);
-      bag.splice(bag.indexOf(drawnSymbol), 1);
+      if (!replacement)
+        bag.splice(bag.indexOf(drawnSymbol), 1);
     }
     let drawnHand = "";
     if (orderMatters)

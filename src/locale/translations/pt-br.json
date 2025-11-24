@@ -28,7 +28,7 @@
     "sourceNotFound": "Conexão de origem não encontrada.",
     "sourceForTheNodeNotFound": "Conexão de origem para o nó \"{{name}}\" não encontrada.",
     "explodeFaceGreaterThanMax": "Face de explosão não pode ser maior que a face máxima do Gerador de Dado.",
-    "pullsGreaterThanMaxFaces": "Quantidade de saques não pode ser maior que a quantidade de faces do Gerador Simbólico.",
+    "pullsGreaterThanFaces": "Quantidade de saques não pode ser maior que a quantidade de faces do Gerador Simbólico.",
     "histogramStateNotFound": "Nenhum estado encontrada para o histograma \"{{name}}\"."
   },
   "sidebar": {
@@ -80,6 +80,7 @@
     "symbols": "Símbolos",
     "drawAmount": "Quantidade de saques",
     "orderMatters": "A ordem importa?",
+    "replacement": "Com reposição?",
     "addNewSymbol": "Adicionar novo símbolo",
     "removeSymbol": "Remover símbolo",
     "explodeFace": "Face de explosão",

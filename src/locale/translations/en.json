@@ -80,6 +80,7 @@
     "symbols": "Symbols",
     "drawAmount": "Number of draws",
     "orderMatters": "Does the order matter?",
+    "replacement": "With replacement?",
     "addNewSymbol": "Add new symbol",
     "removeSymbol": "Remove symbol",
     "explodeFace": "Explode face",

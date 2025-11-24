@@ -11,6 +11,7 @@ export const DrawSymbolsProperties: React.FunctionComponent<{ node: IDrawSymbols
   const flow = useReactFlow();
   const [drawAmount, setDrawAmount] = React.useState(node.data.drawAmount);
   const [orderMatters, setOrderMatters] = React.useState(node.data.orderMatters);
+  const [replacement, setReplacement] = React.useState(node.data.replacement);
 
   function handleChangeDrawAmount(value: string | number) {
     const newValue = isNaN(Number(value)) ? 1 : Number(value);
@@ -24,7 +25,13 @@ export const DrawSymbolsProperties: React.FunctionComponent<{ node: IDrawSymbols
     node.data.orderMatters = checked;
   }
 
-  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, drawAmount }), 500, [drawAmount]);
+  function handleChangeReplacement(event: React.ChangeEvent<HTMLInputElement>) {
+    const checked = event.currentTarget.checked;
+    setReplacement(checked);
+    node.data.replacement = checked;
+  }
+
+  useDebounce(() => flow.updateNodeData(node.id, { ...node.data, drawAmount, orderMatters, replacement }), 500, [drawAmount, orderMatters, replacement]);
 
   return (
       <BaseNodeProperties
@@ -38,6 +45,7 @@ export const DrawSymbolsProperties: React.FunctionComponent<{ node: IDrawSymbols
                       onChange={handleChangeDrawAmount}
                   />
                   <Checkbox label={t("nodeProperties.orderMatters")} checked={orderMatters} onChange={handleChangeOrderMatters} />
+                  <Checkbox label={t("nodeProperties.replacement")} checked={replacement} onChange={handleChangeReplacement} />
               </>
           }
       />
