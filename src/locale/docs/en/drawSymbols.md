@@ -27,7 +27,7 @@
 * **Default:** Draw Symbols
 * **Function:** Name displayed on the modeling board
 
-#### **Number of Draws (k)**
+#### **Number of Draws**
 
 * **Type:** Integer
 * **Default:** `2`
