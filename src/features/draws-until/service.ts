@@ -50,11 +50,10 @@ function drawsUntil(symbols: string[], drawAmount: number, replacement: boolean,
     let count = 0;
     const conditionsCount = new Array(objectives.length).fill(0);
     const conditionsMet = () => objectives.every((obj, index) => conditionsCount[index] >= obj.count);
+    let bag = [...symbols];
     while (!conditionsMet()) {
       count++;
       const drawnValues: string[] = [];
-      
-      const bag = [...symbols];
       for (let j = 0; j < drawAmount; j++) {
         const drawnSymbol = bag[Math.floor(Math.random() * bag.length)];
         drawnValues.push(drawnSymbol);
@@ -67,6 +66,11 @@ function drawsUntil(symbols: string[], drawAmount: number, replacement: boolean,
         const drawnCount = drawnValues.filter(s => s === obj.symbol).length;
         conditionsCount[index] += drawnCount;
       });
+
+      // If replacement is true, reset the bag
+      if (replacement) {
+        bag = [...symbols];
+      }
     }
     result.push(count);
   }
@@ -80,6 +84,9 @@ function isOperationPossible(objectives: { symbol: string; count: number }[], dr
       return false;
     }
     if (!replacement && symbols.length < drawAmount) {
+      return false;
+    }
+    if (!replacement && symbols.filter(s => s === objective.symbol).length < objective.count) {
       return false;
     }
   }
