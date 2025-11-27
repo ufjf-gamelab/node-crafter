@@ -26,7 +26,6 @@ export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
     if (!source) throw new Error("Source connection state not found!");
 
     const sourceNode = source.node as ISymbolicPoolNode;
-    if (sourceNode.data.symbols.length < node.data.drawAmount && !node.data.replacement) throw new Error(i18n.t("errors.pullsGreaterThanFaces"));
 
     const weightedSymbols: string[] = [];
     sourceNode.data.symbols.forEach(([symbol, weight]) => {
@@ -34,6 +33,10 @@ export const DrawSymbolsService: INodeService<IDrawSymbolsNode> = {
         weightedSymbols.push(symbol);
       }
     });
+
+    if (weightedSymbols.length < node.data.drawAmount && !node.data.replacement) throw new Error(i18n.t("errors.pullsGreaterThanTotalSymbols"));
+
+
     const resultState = drawSymbols(weightedSymbols, node.data.drawAmount, node.data.orderMatters, node.data.replacement);
     return resultState;
   },

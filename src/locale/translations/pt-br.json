@@ -30,7 +30,8 @@
     "explodeFaceGreaterThanMax": "Face de explosão não pode ser maior que a face máxima do Gerador de Dado.",
     "pullsGreaterThanFaces": "Quantidade de saques não pode ser maior que a quantidade de faces do Gerador Simbólico.",
     "histogramStateNotFound": "Nenhum estado encontrada para o histograma \"{{name}}\".",
-    "drawsUntilImpossible": "As condições de parada não podem ser atendidas com os parâmetros atuais."
+    "drawsUntilImpossible": "As condições de parada não podem ser atendidas com os parâmetros atuais.",
+    "pullsGreaterThanTotalSymbols": "A quantidade de saques não pode ser maior que o total de símbolos na pool simbólica."
   },
   "sidebar": {
     "clearTooltip": "Limpar todos nós",

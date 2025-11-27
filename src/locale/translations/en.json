@@ -30,7 +30,8 @@
     "explodeFaceGreaterThanMax": "Explode face can't be greater than dice generator max face.",
     "pullsGreaterThanFaces": "Number of pulls can't be greater than Symbolic Generator faces.",
     "histogramStateNotFound": "No state found for the histogram \"{{name}}\".",
-    "drawsUntilImpossible": "Stop conditions cannot be met with the current parameters."
+    "drawsUntilImpossible": "Stop conditions cannot be met with the current parameters.",
+    "pullsGreaterThanTotalSymbols": "Number of pulls can't be greater than total symbols in the symbolic pool."
   },
   "sidebar": {
     "clearTooltip": "Clear all nodes",
