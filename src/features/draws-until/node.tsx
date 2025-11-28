@@ -3,6 +3,7 @@ import React from "react";
 import { NodeProps, Position } from "@xyflow/react";
 import DrawsUntilIcon from "@/assets/icons/svg/draw-symbols.svg?react"
 import HaltIcon from "@/assets/icons/svg/halt.svg?react"
+import RecycleIcon from "@/assets/icons/svg/recycle.svg?react"
 import { IDrawsUntilNode } from "@/config/types";
 import { BaseNode } from "@/components/ui/base-node";
 import { NodeHandle } from "@/components/ui/node-handle";
@@ -21,6 +22,9 @@ export const DrawsUntilNode: React.ComponentType<IProps> = ({ data, isConnectabl
               <>
                   <DrawsUntilIcon className="w-14 h-14 mb-3" />
                   <HaltIcon className="w-7 h-7 -ml-2 mt-1" />
+                  {data.replacement && (
+                      <RecycleIcon className="w-5 h-5 absolute right-2 top-2" />
+                  )}
               </>
           }
       >

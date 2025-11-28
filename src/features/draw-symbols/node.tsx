@@ -21,7 +21,7 @@ export const DrawSymbolsNode: React.ComponentType<IProps> = ({ data, isConnectab
               <>
                   <DrawSymbolsIcon className="w-14 h-14 mb-3" />
                   {data.replacement && (
-                      <RecycleIcon className="w-5 h-5 mt-3 mr-2" />
+                      <RecycleIcon className="w-5 h-5 absolute right-2 top-2" />
                   )}
               </>
           }
