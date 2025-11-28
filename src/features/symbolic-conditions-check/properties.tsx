@@ -115,7 +115,7 @@ export const SymbolicConditionsCheckProperties: React.FunctionComponent<{ node: 
                                   <NumberInput
                                       label={t("nodeProperties.quantity")}
                                       value={conditions[index].count}
-                                      min={1}
+                                      min={0}
                                       onChange={(value) =>
                                           handleChangeConditionCount(
                                               Number(value),
