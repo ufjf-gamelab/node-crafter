@@ -31,7 +31,8 @@
     "pullsGreaterThanFaces": "Number of pulls can't be greater than Symbolic Generator faces.",
     "histogramStateNotFound": "No state found for the histogram \"{{name}}\".",
     "drawsUntilImpossible": "Stop conditions cannot be met with the current parameters.",
-    "pullsGreaterThanTotalSymbols": "Number of pulls can't be greater than total symbols in the symbolic pool."
+    "pullsGreaterThanTotalSymbols": "Number of pulls can't be greater than total symbols in the symbolic pool.",
+    "downloadFailed": "Error trying to download chart"
   },
   "sidebar": {
     "clearTooltip": "Clear all nodes",
@@ -50,8 +51,11 @@
     "openSection": "Open section",
     "openSectionTooltip": "Open simulation section",
     "itemsNotFound": "No histograms found to display, check if there are valid connections between nodes",
-    "downloadChartImageTooltip": "Download chart image",
-    "alertChartNotFound": "Chart not found"
+    "alertChartNotFound": "Chart not found",
+    "downloadChartTooltip": "Download chart",
+    "downloadChartImage": "Download chart image",
+    "downloadChartAsText": "Download chart data as text",
+    "downloadChartAsCSV": "Download chart data as CSV"
   },
   "modalImportExport": {
     "modalTitle": "Import & Export",

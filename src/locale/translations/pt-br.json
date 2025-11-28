@@ -31,7 +31,8 @@
     "pullsGreaterThanFaces": "Quantidade de saques não pode ser maior que a quantidade de faces do Gerador Simbólico.",
     "histogramStateNotFound": "Nenhum estado encontrada para o histograma \"{{name}}\".",
     "drawsUntilImpossible": "As condições de parada não podem ser atendidas com os parâmetros atuais.",
-    "pullsGreaterThanTotalSymbols": "A quantidade de saques não pode ser maior que o total de símbolos na pool simbólica."
+    "pullsGreaterThanTotalSymbols": "A quantidade de saques não pode ser maior que o total de símbolos na pool simbólica.",
+    "downloadFailed": "Erro ao tentar baixar o gráfico"
   },
   "sidebar": {
     "clearTooltip": "Limpar todos nós",
@@ -50,8 +51,11 @@
     "openSection": "Abrir seção",
     "openSectionTooltip": "Abrir seção de simulação",
     "itemsNotFound": "Nenhum histograma encontrado para exibir, verifique se existem conexões válidas entre os nós",
-    "downloadChartImageTooltip": "Baixar imagem do gráfico",
-    "alertChartNotFound": "Gráfico não encontrado"
+    "alertChartNotFound": "Gráfico não encontrado",
+    "downloadChartTooltip": "Baixar gráfico",
+    "downloadChartImage": "Baixar imagem do gráfico",
+    "downloadChartAsText": "Baixar dados do gráfico como texto",
+    "downloadChartAsCSV": "Baixar dados do gráfico como CSV"
   },
   "modalImportExport": {
     "modalTitle": "Importar e Exportar",
