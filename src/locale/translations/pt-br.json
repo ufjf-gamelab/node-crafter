@@ -137,7 +137,7 @@
     "selectRandomSymbol": "Selecionar Símbolo Aleatório",
     "mergeDicePools": "Mesclar Pools",
     "selectHighestDice": "Selecionar Maior",
-    "symbolicConditionsCheck": "Condições Simbólicas"
+    "symbolicConditionsCheck": "Verificador de Condições Simbólicas"
   },
   "nodeFullName": {
     "diceGenerator": "Gerador de Dado",

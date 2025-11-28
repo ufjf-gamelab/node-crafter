@@ -137,7 +137,7 @@
     "selectRandomSymbol": "Select Random Symbol",
     "mergeDicePools": "Merge Pools",
     "selectHighestDice": "Select Highest",
-    "symbolicConditionsCheck": "Sym. Conditions Checker"
+    "symbolicConditionsCheck": "Symbolic Conditions Checker"
   },
   "nodeFullName": {
     "diceGenerator": "Dice Generator",
