@@ -8,7 +8,6 @@ type IProps = {
 };
 
 const Tooltip: React.ComponentType<IProps> = ({ label, payload, total }) => {
-    console.log(payload);
     return (
         <Paper>
             <Text size="sm" className="p-2">
