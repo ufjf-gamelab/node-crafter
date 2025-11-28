@@ -105,7 +105,10 @@
     "removeFace": "Remove face",
     "value": "Value",
     "quantity": "Quantity",
-    "pulls": "Number of pulls"
+    "pulls": "Number of pulls",
+    "conditionType": "Type",
+    "conditions": "Conditions",
+    "addNewCondition": "Add new condition"
   },
   "nodeShortName": {
     "diceGenerator": "Dice",
@@ -133,7 +136,8 @@
     "selectRandomDice": "Select Random",
     "selectRandomSymbol": "Select Random Symbol",
     "mergeDicePools": "Merge Pools",
-    "selectHighestDice": "Select Highest"
+    "selectHighestDice": "Select Highest",
+    "symbolicConditionsCheck": "Sym. Conditions Checker"
   },
   "nodeFullName": {
     "diceGenerator": "Dice Generator",
@@ -161,7 +165,8 @@
     "selectRandomDice": "Select Random Dice",
     "selectRandomSymbol": "Select Random Symbol",
     "mergeDicePools": "Merge Dice Pools",
-    "selectHighestDice": "Select Highest Dice"
+    "selectHighestDice": "Select Highest Dice",
+    "symbolicConditionsCheck": "Symbolic Conditions Checker"
   },
   "nodeStatus": {
     "FINISHED": "Finished",

@@ -108,6 +108,7 @@ const Sidebar: FunctionComponent = () => {
               <SidebarItem nodeType="symbolicPool" fullName />
               <SidebarItem nodeType="drawSymbols" fullName />
               <SidebarItem nodeType="drawsUntil" fullName />
+              <SidebarItem nodeType="symbolicConditionsCheck" fullName={false} />
             </ul>
           </Accordion.Panel>
         </Accordion.Item>

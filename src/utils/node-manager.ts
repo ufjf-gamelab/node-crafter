@@ -13,6 +13,7 @@ import { DrawSymbols } from "@/features/draw-symbols";
 import { DrawsUntil } from "@/features/draws-until";
 import { SymbolicGenerator } from "@/features/symbolic-generator";
 import { SymbolicPool } from "@/features/symbolic-pool";
+import { SymbolicConditionsCheck } from "@/features/symbolic-conditions-check";
 import { SymbolicGeneratorPool } from "@/features/symbolic-generator-pool";
 import { DiceMath } from "@/features/dice-math";
 import { DiceAbsolute } from "@/features/dice-absolute";
@@ -37,6 +38,7 @@ const NODE_MODULES = {
   bagPullWithoutRepetition: BagPullWithoutRepetition,
   drawSymbols: DrawSymbols,
   drawsUntil: DrawsUntil,
+  symbolicConditionsCheck: SymbolicConditionsCheck,
   // operations
   diceMath: DiceMath,
   diceCountRepetition: DiceCountRepetition,

@@ -105,7 +105,10 @@
     "removeFace": "Remover face",
     "value": "Valor",
     "quantity": "Quantidade",
-    "pulls": "Quantidade de saques"
+    "pulls": "Quantidade de saques",
+    "conditionType": "Tipo",
+    "conditions": "Condições",
+    "addNewCondition": "Adicionar nova condição"
   },
   "nodeShortName": {
     "diceGenerator": "Dado",
@@ -133,7 +136,8 @@
     "selectRandomDice": "Selecionar Aleatório",
     "selectRandomSymbol": "Selecionar Símbolo Aleatório",
     "mergeDicePools": "Mesclar Pools",
-    "selectHighestDice": "Selecionar Maior"
+    "selectHighestDice": "Selecionar Maior",
+    "symbolicConditionsCheck": "Condições Simbólicas"
   },
   "nodeFullName": {
     "diceGenerator": "Gerador de Dado",
@@ -161,7 +165,8 @@
     "selectRandomDice": "Selecionar Dado Aleatório",
     "selectRandomSymbol": "Selecionar Símbolo Aleatório",
     "mergeDicePools": "Mesclar Pools de Dado",
-    "selectHighestDice": "Selecionar Maior Dado"
+    "selectHighestDice": "Selecionar Maior Dado",
+    "symbolicConditionsCheck": "Verificador de Condições Simbólicas"
   },
   "nodeStatus": {
     "FINISHED": "Finalizado",
