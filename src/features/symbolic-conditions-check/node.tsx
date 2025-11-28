@@ -2,7 +2,7 @@
 import React from "react";
 import { NodeProps, Position } from "@xyflow/react";
 import SymbolicConditionsCheckIcon from "@/assets/icons/svg/draw-symbols.svg?react"
-import HaltIcon from "@/assets/icons/svg/halt.svg?react"
+import { GiGearStickPattern } from "react-icons/gi";
 import { ISymbolicConditionsCheckNode } from "@/config/types";
 import { BaseNode } from "@/components/ui/base-node";
 import { NodeHandle } from "@/components/ui/node-handle";
@@ -15,12 +15,12 @@ export const SymbolicConditionsCheckNode: React.ComponentType<IProps> = ({ data,
           id={id}
           selected={selected}
           name={data.name}
-          label={data.drawAmount}
+          label={data.conditions[0] ? `${data.conditions[0].symbol} ${data.conditions[0].type} ${data.conditions[0].count}` : "No Conditions"}
           status={data.status}
           icon={
               <>
                   <SymbolicConditionsCheckIcon className="w-14 h-14 mb-3" />
-                  <HaltIcon className="w-7 h-7 -ml-2 mt-1" />
+                  <GiGearStickPattern className="text-2xl -ml-1" />
               </>
           }
       >
