@@ -17,6 +17,7 @@ export type INodeStateMap = {
   drawsUntil: number[];
   symbolicGenerator: string[];
   symbolicPool: string[];
+  symbolicConditionsCheck: number[];
   symbolicGeneratorPool: string[][];
   diceMath: number[];
   diceAbsolute: number[];
@@ -40,6 +41,7 @@ export type IEdge = Edge;
 export type IFlowInstance = ReactFlowInstance<INode, IEdge>;
 export type IDiceMathOperation = "sum" | "subtract" | "multiply" | "divide (floor)" | "divide (ceil)";
 export type IDiceLogicalOperation = "A >= B" | "A <= B" | "A = B";
+export type ISymbolicConditionsCheckType = ">=" | "<=" | "=";
 export type INodeService<N extends INode> = {
   new: (flow: ReactFlowInstance<INode, IEdge>, defaultValue: Pick<N, "id" | "position">) => N;
   run: (payload: { node: N; inputs: { node: INode; state: INodeState }[]; iterations: number }) => INodeState<N>;
@@ -72,6 +74,7 @@ export type IDrawSymbolsNode = IBaseNode<{ drawAmount: number; orderMatters: boo
 export type IDrawsUntilNode = IBaseNode<{ drawAmount: number; replacement: boolean, objectives: { symbol:string, count:number }[] }, "drawsUntil">;
 export type ISymbolicGeneratorNode = IBaseNode<{ faces: string[] }, "symbolicGenerator">;
 export type ISymbolicPoolNode = IBaseNode<{ symbols: [string, number][] }, "symbolicPool">;
+export type ISymbolicConditionsCheckNode = IBaseNode<{ conditions: {symbol: string, type: ISymbolicConditionsCheckType, count: number}[] }, "symbolicConditionsCheck">;
 export type ISymbolicGeneratorPoolNode = IBaseNode<{ quantity: number }, "symbolicGeneratorPool">;
 export type IDiceAbsoluteNode = IBaseNode<{}, "diceAbsolute">;
 export type IDiceMathNode = IBaseNode<{ operation: IDiceMathOperation }, "diceMath">;
@@ -100,6 +103,7 @@ export type INode =
   | IDrawsUntilNode
   | ISymbolicGeneratorNode
   | ISymbolicPoolNode
+  | ISymbolicConditionsCheckNode
   | ISymbolicGeneratorPoolNode
   | IDiceMathNode
   | IDiceAbsoluteNode
