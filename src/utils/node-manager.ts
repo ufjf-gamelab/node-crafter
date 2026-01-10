@@ -15,6 +15,7 @@ import { SymbolicGenerator } from "@/features/symbolic-generator";
 import { SymbolicPool } from "@/features/symbolic-pool";
 import { SymbolicConditionsCheck } from "@/features/symbolic-conditions-check";
 import { SymbolicGeneratorPool } from "@/features/symbolic-generator-pool";
+import { NumericValue } from "@/features/numeric-value";
 import { DiceMath } from "@/features/dice-math";
 import { DiceAbsolute } from "@/features/dice-absolute";
 import { DiceLogical } from "@/features/dice-logical";
@@ -39,6 +40,8 @@ const NODE_MODULES = {
   drawSymbols: DrawSymbols,
   drawsUntil: DrawsUntil,
   symbolicConditionsCheck: SymbolicConditionsCheck,
+  numericValue: NumericValue,
+
   // operations
   diceMath: DiceMath,
   diceCountRepetition: DiceCountRepetition,

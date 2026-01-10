@@ -19,6 +19,7 @@ export type INodeStateMap = {
   symbolicPool: string[];
   symbolicConditionsCheck: number[];
   symbolicGeneratorPool: string[][];
+  numericValue: number[];
   diceMath: number[];
   diceAbsolute: number[];
   diceLogical: number[];
@@ -76,6 +77,7 @@ export type ISymbolicGeneratorNode = IBaseNode<{ faces: string[] }, "symbolicGen
 export type ISymbolicPoolNode = IBaseNode<{ symbols: [string, number][] }, "symbolicPool">;
 export type ISymbolicConditionsCheckNode = IBaseNode<{ conditions: {symbol: string, type: ISymbolicConditionsCheckType, count: number}[] }, "symbolicConditionsCheck">;
 export type ISymbolicGeneratorPoolNode = IBaseNode<{ quantity: number }, "symbolicGeneratorPool">;
+export type INumericValueNode = IBaseNode<{ valuesConversionDictionary: Record<string, number> }, "numericValue">;
 export type IDiceAbsoluteNode = IBaseNode<{}, "diceAbsolute">;
 export type IDiceMathNode = IBaseNode<{ operation: IDiceMathOperation }, "diceMath">;
 export type IDiceLogicalNode = IBaseNode<{ operation: IDiceLogicalOperation }, "diceLogical">;
@@ -105,6 +107,7 @@ export type INode =
   | ISymbolicPoolNode
   | ISymbolicConditionsCheckNode
   | ISymbolicGeneratorPoolNode
+  | INumericValueNode
   | IDiceMathNode
   | IDiceAbsoluteNode
   | IDiceLogicalNode
