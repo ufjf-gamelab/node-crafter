@@ -7,7 +7,7 @@ import "@/config/i18n";
 
 function App() {
   return (
-    <div className="relative">
+    <div className="relative h-screen w-screen overflow-hidden">
       <Sidebar />
       <AsideNodeProperties />
       <TaskBar />
