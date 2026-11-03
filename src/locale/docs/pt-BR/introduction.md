@@ -47,6 +47,21 @@ Segundo as regras do D&D 5ª Edição:
 
 ---
 
+## Workspaces e diagramas
+
+O Node Crafter organiza o trabalho em **diagramas**. Um workspace pode conter vários diagramas, cada um exibido como uma aba no topo do canvas.
+
+- Use **Novo diagrama** para criar um diagrama vazio.
+- Use **Importar diagrama** para carregar um board `.json` ou `.txt` legado em uma nova aba.
+- Use **Exportar diagrama** para baixar o diagrama ativo como `.json`.
+- Use **Importar workspace** / **Exportar workspace** para mover todos os diagramas de uma vez.
+- Pressione **Ctrl+S** / **Cmd+S** para baixar todo o workspace como `.json`.
+- Pressione **Ctrl+Shift+S** para baixar apenas o diagrama ativo.
+
+Os diagramas são salvos automaticamente no navegador. Fechar uma aba remove aquele diagrama do workspace; confirme antes de fechar.
+
+---
+
 ## Agradecimento
 
 Agradecemos por utilizar o **Node Crafter**!  

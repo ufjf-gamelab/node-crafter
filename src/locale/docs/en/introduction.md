@@ -47,6 +47,21 @@ According to D&D 5th edition rules:
 
 ---
 
+## Workspaces and diagrams
+
+Node Crafter keeps your work in **diagrams**. A workspace can contain several diagrams, each shown as a tab at the top of the canvas.
+
+- Use **New diagram** to create an empty diagram.
+- Use **Import diagram** to load a `.json` or legacy `.txt` board into a new tab.
+- Use **Export diagram** to download the active diagram as `.json`.
+- Use **Import workspace** / **Export workspace** to move all diagrams at once.
+- Press **Ctrl+S** / **Cmd+S** to download the whole workspace as `.json`.
+- Press **Ctrl+Shift+S** to download only the active diagram.
+
+Diagrams are saved automatically in the browser. Closing a tab removes that diagram from the workspace, so confirm before closing.
+
+---
+
 ## Acknowledgment
 
 Thank you for using **Node Crafter**!  

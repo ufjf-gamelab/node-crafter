@@ -16,3 +16,16 @@ To demonstrate NodeCrafter's capabilities, we provide simulation examples based 
 * [**`DidntGainWearThisTurn.txt`**](https://ufjf-gamelab.github.io/node-crafter/examples/DidntGainWearThisTurn.txt): Probability of completing a turn without gaining wear cubes.
 
 You can find these files in the `public/examples/` folder to import them locally, or find them directly on our web version
+
+### Workspace
+
+Node Crafter keeps your work in **diagrams**. A workspace can contain several diagrams, each shown as a tab at the top of the canvas.
+
+- **New diagram**: create an empty diagram.
+- **Import diagram**: load a `.json` or legacy `.txt` board into a new tab.
+- **Export diagram**: download the active diagram as `.json`.
+- **Import/Export workspace**: move all diagrams at once.
+- **Ctrl+S / Cmd+S**: download the whole workspace as `.json`.
+- **Ctrl+Shift+S**: download only the active diagram.
+
+Diagrams are saved automatically in the browser. Closing a tab removes that diagram from the workspace.

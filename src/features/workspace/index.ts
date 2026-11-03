@@ -4,4 +4,5 @@ export * from "./serialization";
 export * from "./storage";
 export * from "./workspace-reducer";
 export * from "./download-json";
+export * from "./shortcuts";
 export * from "./workspace-provider";
