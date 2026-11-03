@@ -83,7 +83,7 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
         saveWorkspace(window.localStorage, workspaceRef.current);
         setStatus("saved");
         saveErrorNotified.current = false;
-      } catch (error) {
+      } catch {
         setStatus("error");
         if (!saveErrorNotified.current) {
           notifications.show({ message: i18n.t("workspace.notifications.saveFailed"), color: "red" });

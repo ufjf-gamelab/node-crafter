@@ -1,8 +1,8 @@
 import { Sidebar } from "@/components/layout/sidebar";
 import { TaskBar } from "./components/layout/task-bar";
 import { AsideNodeProperties } from "@/components/layout/aside-node-properties";
-import { HelpIntroduction } from "./components/layout/help-introduction";
 import { DiagramCanvas } from "@/features/workspace/diagram-canvas";
+import { WorkspaceChrome } from "@/features/workspace/workspace-chrome";
 import "@/config/i18n";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Sidebar />
       <AsideNodeProperties />
       <TaskBar />
-      <HelpIntroduction />
+      <WorkspaceChrome />
       <DiagramCanvas />
     </div>
   );

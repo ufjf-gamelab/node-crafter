@@ -9,6 +9,7 @@ export type WorkspaceAction =
   | { type: "closeDiagram"; id: string; replacementId: string; replacementName: string; now: string }
   | { type: "setActiveDiagram"; id: string }
   | { type: "updateDiagram"; id: string; content: IDiagramContent; viewport?: IDiagramViewport; now: string }
+  | { type: "updateViewport"; id: string; viewport: IDiagramViewport; now: string }
   | { type: "addDiagram"; diagram: IDiagram }
   | { type: "replaceWorkspace"; workspace: IWorkspace };
 
@@ -132,6 +133,19 @@ export function workspaceReducer(state: IWorkspace, action: WorkspaceAction): IW
             updatedAt: action.now,
             revision: diagram.revision + 1,
           },
+        },
+      };
+    }
+
+    case "updateViewport": {
+      const diagram = state.diagrams[action.id];
+      if (!diagram) return state;
+
+      return {
+        ...state,
+        diagrams: {
+          ...state.diagrams,
+          [action.id]: { ...diagram, viewport: action.viewport, updatedAt: action.now, revision: diagram.revision + 1 },
         },
       };
     }
