@@ -1,0 +1,70 @@
+{
+  "nodes": [
+    {
+      "id": "dice-1",
+      "type": "diceGenerator",
+      "position": { "x": 20, "y": -40 },
+      "data": {
+        "name": "Dado",
+        "status": "IDLE",
+        "min": 1,
+        "max": 6,
+        "state": [],
+        "outputType": "numericGenerator"
+      }
+    },
+    {
+      "id": "dice-math-1",
+      "type": "diceMath",
+      "position": { "x": 200, "y": 20 },
+      "data": {
+        "name": "Matemática",
+        "status": "IDLE",
+        "operation": "sum",
+        "inputType": "numeric",
+        "outputType": "numeric"
+      }
+    },
+    {
+      "id": "integer-1",
+      "type": "integerValue",
+      "position": { "x": 20, "y": 80 },
+      "data": {
+        "name": "Valor",
+        "status": "IDLE",
+        "value": 4,
+        "outputType": "numeric"
+      }
+    },
+    {
+      "id": "histogram-1",
+      "type": "histogram",
+      "position": { "x": 360, "y": 20 },
+      "data": {
+        "name": "Histograma 1",
+        "status": "IDLE",
+        "sortDirection": "asc",
+        "inputType": "any"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "dice-1",
+      "target": "dice-math-1",
+      "targetHandle": "math-target-1-dice-math-1"
+    },
+    {
+      "id": "edge-2",
+      "source": "integer-1",
+      "target": "dice-math-1",
+      "targetHandle": "math-target-2-dice-math-1"
+    },
+    {
+      "id": "edge-3",
+      "source": "dice-math-1",
+      "target": "histogram-1"
+    }
+  ]
+}

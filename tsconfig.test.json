@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["node", "./src/i18next.d.ts"]
+  },
+  "include": ["tests", "src/features/workspace"]
+}

@@ -8,7 +8,13 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "npm run test:type && node --test \"tests/**/*.test.ts\"",
+    "test:unit": "node --test \"tests/unit/**/*.test.ts\"",
+    "test:acceptance": "node --test \"tests/acceptance/**/*.test.ts\"",
+    "test:watch": "node --test --watch \"tests/**/*.test.ts\"",
+    "test:type": "tsc -p tsconfig.test.json --noEmit",
+    "check": "npm run type-check && npm run test && npm run build"
   },
   "dependencies": {
     "@mantine/charts": "^7.16.1",
