@@ -29,7 +29,7 @@ const HelpIntroduction: React.FC = () => {
           variant="subtle"
           onClick={() => setOpened(true)}
           size="input-lg"
-          className="fixed right-0 z-10 text-3xl rounded-full">
+          className="fixed right-2 top-11 z-40 text-3xl rounded-full">
           <BiSolidHelpCircle />
         </ActionIcon>
       </Tooltip>

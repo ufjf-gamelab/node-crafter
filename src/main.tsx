@@ -4,6 +4,7 @@ import { MantineProvider } from "@mantine/core";
 import { LayoutProvider } from "./contexts/layout-context.tsx";
 import { mantineTheme } from "./config/mantine-theme.ts";
 import { SimulationProvider } from "@/contexts/simulation-context.tsx";
+import { WorkspaceProvider } from "@/features/workspace/index.ts";
 import { Notifications } from "@mantine/notifications";
 
 import App from "./App.tsx";
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MantineProvider theme={mantineTheme} defaultColorScheme="light">
       <ReactFlowProvider>
+      <WorkspaceProvider>
         <LayoutProvider>
           <SimulationProvider>
             <DocumentationProvider>
@@ -29,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
             </DocumentationProvider>
           </SimulationProvider>
         </LayoutProvider>
+      </WorkspaceProvider>
       </ReactFlowProvider>
     </MantineProvider>
   </StrictMode>
