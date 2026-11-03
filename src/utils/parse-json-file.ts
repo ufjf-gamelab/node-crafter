@@ -1,6 +1,8 @@
 export async function parseJsonFile<T extends object>(file: File): Promise<T> {
-  if (!file.type.includes("text")) {
-    throw new Error("Invalid file type. Expected a text file.");
+  const acceptedType = file.type.includes("text") || file.type === "application/json" || file.type === "";
+  const acceptedExtension = file.name.toLowerCase().endsWith(".json") || file.name.toLowerCase().endsWith(".txt");
+  if (!acceptedType && !acceptedExtension) {
+    throw new Error("Invalid file type. Expected a text or JSON file.");
   }
 
   return new Promise((resolve, reject) => {

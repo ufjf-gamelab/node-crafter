@@ -1,9 +1,8 @@
 import React from "react";
 import { cls } from "@/utils/cls";
 import { useTranslation } from "react-i18next";
-import { BiImport, BiPlay, BiReset, BiSolidChevronUp } from "react-icons/bi";
+import { BiPlay, BiReset, BiSolidChevronUp } from "react-icons/bi";
 import { Button, Tooltip } from "@mantine/core";
-import { ModalImportExport } from "@/features/modal-import-export";
 import { useLayoutContext } from "@/contexts/layout-context";
 
 type IProps = {
@@ -14,7 +13,6 @@ type IProps = {
 
 export const ActionBar: React.FC<IProps> = ({ loading, runSimulation, clearSimulation }) => {
   const { t } = useTranslation();
-  const [importModal, setImportModal] = React.useState(false);
   const { simulationOpen, setSimulationOpen, asidePropertiesOpen, sidebarWidth, asidePropertiesWidth } = useLayoutContext();
 
   async function startSimulation() {
@@ -44,18 +42,12 @@ export const ActionBar: React.FC<IProps> = ({ loading, runSimulation, clearSimul
           </Button>
         </Tooltip>
 
-        <Button leftSection={<BiImport className="text-xl" />} onClick={() => setImportModal(true)}>
-          {t("taskBar.importExport")}
-        </Button>
-
         <Tooltip label={simulationOpen ? t("taskBar.openSectionTooltip") : t("taskBar.closeSectionTooltip")}>
           <Button color="gray" onClick={() => setSimulationOpen(!simulationOpen)}>
             <BiSolidChevronUp className={cls("text-xl transition-transform duration-700", { "transform rotate-180": simulationOpen })} />
           </Button>
         </Tooltip>
       </div>
-
-      <ModalImportExport opened={importModal} close={() => setImportModal(false)} />
     </>
   );
 };
