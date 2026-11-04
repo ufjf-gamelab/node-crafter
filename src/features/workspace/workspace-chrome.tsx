@@ -129,7 +129,7 @@ export const WorkspaceChrome: React.ComponentType = () => {
     <>
       <header className="fixed top-0 left-0 right-0 h-16 z-30 flex items-center select-none bg-white border-b border-slate-200">
         <div className="flex h-full w-48 shrink-0 items-center px-4 border-r border-slate-200 bg-slate-50/60">
-          <img src="logo/md.png" alt="Node Crafter" className="h-12 w-auto pointer-events-none" draggable={false} />
+          <img src="logo/md.png" alt="Node Crafter" className="h-14 w-auto pointer-events-none" draggable={false} />
         </div>
 
         <div className="flex items-center gap-1 px-3">
