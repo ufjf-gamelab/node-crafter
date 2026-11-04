@@ -34,7 +34,6 @@
     "clearDiagram": "Limpar diagrama",
     "importWorkspace": "Importar workspace",
     "exportWorkspace": "Exportar workspace",
-    "saveWorkspace": "Salvar workspace",
     "exportCharts": "Exportar gráficos",
     "addTab": "Novo diagrama",
     "closeTab": "Fechar {{name}}",

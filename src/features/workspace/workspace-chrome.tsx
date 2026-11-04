@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactFlow } from "@xyflow/react";
 import { ActionIcon, Button, Loader, Menu, Modal, TextInput } from "@mantine/core";
-import { BiCheck, BiChevronDown, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
+import { BiCheck, BiChevronDown, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiTrash, BiX } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -144,7 +144,6 @@ export const WorkspaceChrome: React.ComponentType = () => {
               <Menu.Divider />
               <Menu.Item leftSection={<BiFile />} onClick={() => workspaceInputRef.current?.click()} disabled={disabled}>{t("workspace.importWorkspace")}</Menu.Item>
               <Menu.Item leftSection={<BiFile />} onClick={exportWorkspace} disabled={disabled}>{t("workspace.exportWorkspace")}</Menu.Item>
-              <Menu.Item leftSection={<BiSave />} onClick={exportWorkspace} disabled={disabled}>{t("workspace.saveWorkspace")}</Menu.Item>
               <Menu.Divider />
               <Menu.Item leftSection={<BiFile />} onClick={() => setChartsOpened(true)}>{t("workspace.exportCharts")}</Menu.Item>
             </Menu.Dropdown>
