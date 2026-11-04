@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactFlow } from "@xyflow/react";
-import { ActionIcon, Button, Modal, TextInput } from "@mantine/core";
-import { BiFile, BiPlus, BiX } from "react-icons/bi";
+import { ActionIcon, Button, Menu, Modal, TextInput } from "@mantine/core";
+import { BiCopy, BiEdit, BiFile, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -128,51 +128,35 @@ export const WorkspaceChrome: React.ComponentType = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-10 z-30 flex items-center gap-2 px-2 bg-white border-b select-none">
-        <div className="flex items-center gap-1">
-          <Button size="compact-xs" variant="subtle" onClick={createDiagram} disabled={disabled}>
-            {t("workspace.newDiagram")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={() => diagramInputRef.current?.click()} disabled={disabled}>
-            {t("workspace.importDiagram")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={exportDiagram} disabled={disabled}>
-            {t("workspace.exportDiagram")}
-          </Button>
-        </div>
+        <Menu shadow="md" width={220}>
+          <Menu.Target>
+            <Button size="compact-xs" variant="subtle">{t("workspace.menuFile")}</Button>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item leftSection={<BiPlus />} onClick={createDiagram} disabled={disabled}>{t("workspace.newDiagram")}</Menu.Item>
+            <Menu.Item leftSection={<BiFile />} onClick={() => diagramInputRef.current?.click()} disabled={disabled}>{t("workspace.importDiagram")}</Menu.Item>
+            <Menu.Item leftSection={<BiFile />} onClick={exportDiagram} disabled={disabled}>{t("workspace.exportDiagram")}</Menu.Item>
+            <Menu.Divider />
+            <Menu.Item leftSection={<BiFile />} onClick={() => workspaceInputRef.current?.click()} disabled={disabled}>{t("workspace.importWorkspace")}</Menu.Item>
+            <Menu.Item leftSection={<BiFile />} onClick={exportWorkspace} disabled={disabled}>{t("workspace.exportWorkspace")}</Menu.Item>
+            <Menu.Item leftSection={<BiSave />} onClick={exportWorkspace} disabled={disabled}>{t("workspace.saveWorkspace")}</Menu.Item>
+            <Menu.Divider />
+            <Menu.Item leftSection={<BiFile />} onClick={() => setChartsOpened(true)}>{t("workspace.exportCharts")}</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
 
-        <div className="mx-1 h-6 w-px bg-gray-300" />
-
-        <div className="flex items-center gap-1">
-          <Button size="compact-xs" variant="subtle" onClick={duplicateDiagram} disabled={disabled || !activeDiagram}>
-            {t("workspace.duplicateDiagram")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={() => setRenameOpened(true)} disabled={disabled || !activeDiagram}>
-            {t("workspace.renameDiagram")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" color="red" onClick={() => activeDiagram && setCloseTargetId(workspace.activeDiagramId)} disabled={disabled || !activeDiagram}>
-            {t("workspace.closeDiagram")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={clearCurrentDiagram} disabled={disabled}>
-            {t("workspace.clearDiagram")}
-          </Button>
-        </div>
-
-        <div className="mx-1 h-6 w-px bg-gray-300" />
-
-        <div className="flex items-center gap-1">
-          <Button size="compact-xs" variant="subtle" onClick={() => workspaceInputRef.current?.click()} disabled={disabled}>
-            {t("workspace.importWorkspace")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={exportWorkspace} disabled={disabled}>
-            {t("workspace.exportWorkspace")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={exportWorkspace} disabled={disabled}>
-            {t("workspace.saveWorkspace")}
-          </Button>
-          <Button size="compact-xs" variant="subtle" onClick={() => setChartsOpened(true)}>
-            {t("workspace.exportCharts")}
-          </Button>
-        </div>
+        <Menu shadow="md" width={200}>
+          <Menu.Target>
+            <Button size="compact-xs" variant="subtle">{t("workspace.menuEdit")}</Button>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item leftSection={<BiCopy />} onClick={duplicateDiagram} disabled={disabled || !activeDiagram}>{t("workspace.duplicateDiagram")}</Menu.Item>
+            <Menu.Item leftSection={<BiEdit />} onClick={() => setRenameOpened(true)} disabled={disabled || !activeDiagram}>{t("workspace.renameDiagram")}</Menu.Item>
+            <Menu.Item leftSection={<BiX />} color="red" onClick={() => activeDiagram && setCloseTargetId(workspace.activeDiagramId)} disabled={disabled || !activeDiagram}>{t("workspace.closeDiagram")}</Menu.Item>
+            <Menu.Divider />
+            <Menu.Item leftSection={<BiTrash />} onClick={clearCurrentDiagram} disabled={disabled}>{t("workspace.clearDiagram")}</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
 
         <div className="ml-auto flex items-center gap-3 pr-2">
           <span className="text-xs text-gray-500">

@@ -24,6 +24,7 @@
     "exampleName": "Example",
     "copyName": "Copy of {{name}}",
     "menuFile": "File",
+    "menuEdit": "Edit",
     "newDiagram": "New diagram",
     "importDiagram": "Import diagram",
     "exportDiagram": "Export diagram",
