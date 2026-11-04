@@ -1,7 +1,7 @@
 import React from "react";
-import { useReactFlow } from "@xyflow/react";
+import { useOnSelectionChange, useReactFlow } from "@xyflow/react";
 import { ActionIcon, Button, Loader, Menu, Modal, TextInput } from "@mantine/core";
-import { BiCheck, BiChevronDown, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiTrash, BiX } from "react-icons/bi";
+import { BiAlignLeft, BiAlignRight, BiArrowFromBottom, BiArrowFromTop, BiCheck, BiChevronDown, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiTransfer, BiTransferAlt, BiTrash, BiX } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -9,11 +9,13 @@ import { ModalImportExport } from "@/features/modal-import-export";
 import { HelpIntroduction } from "@/components/layout/help-introduction";
 import { useSimulationContext } from "@/contexts/simulation-context";
 import { useWorkspace } from "./workspace-provider.tsx";
+import { alignNodes, type IAlignmentMode } from "./alignment.ts";
+import type { IEdge, INode } from "@/config/types";
 import type { IWorkspace } from "./types.ts";
 
 export const WorkspaceChrome: React.ComponentType = () => {
   const { t } = useTranslation();
-  const flow = useReactFlow();
+  const flow = useReactFlow<INode, IEdge>();
   const { loading } = useSimulationContext();
   const {
     workspace,
@@ -36,6 +38,7 @@ export const WorkspaceChrome: React.ComponentType = () => {
   const [closeTargetId, setCloseTargetId] = React.useState<string | null>(null);
   const [pendingWorkspace, setPendingWorkspace] = React.useState<IWorkspace | null>(null);
   const [chartsOpened, setChartsOpened] = React.useState(false);
+  const [selectedCount, setSelectedCount] = React.useState(0);
 
   const diagramInputRef = React.useRef<HTMLInputElement>(null);
   const workspaceInputRef = React.useRef<HTMLInputElement>(null);
@@ -55,6 +58,10 @@ export const WorkspaceChrome: React.ComponentType = () => {
   React.useEffect(() => {
     activeTabRef.current?.scrollIntoView({ inline: "nearest", block: "nearest" });
   }, [workspace.activeDiagramId]);
+
+  useOnSelectionChange({
+    onChange: React.useCallback(({ nodes }) => setSelectedCount(nodes.length), []),
+  });
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -123,6 +130,17 @@ export const WorkspaceChrome: React.ComponentType = () => {
     flow.setEdges([]);
   }
 
+  function handleAlign(mode: IAlignmentMode) {
+    const aligned = alignNodes(flow.getNodes(), mode);
+    aligned.forEach((node) => {
+      const current = flow.getNode(node.id);
+      if (!current) return;
+      if (current.position.x === node.position.x && current.position.y === node.position.y) return;
+
+      flow.updateNode(node.id, { position: node.position });
+    });
+  }
+
   const tabs = Object.entries(workspace.diagrams).map(([id, diagram]) => ({ id, name: diagram.name }));
 
   return (
@@ -159,6 +177,21 @@ export const WorkspaceChrome: React.ComponentType = () => {
               <Menu.Item leftSection={<BiX />} color="red" onClick={() => activeDiagram && setCloseTargetId(workspace.activeDiagramId)} disabled={disabled || !activeDiagram}>{t("workspace.closeDiagram")}</Menu.Item>
               <Menu.Divider />
               <Menu.Item leftSection={<BiTrash />} onClick={clearCurrentDiagram} disabled={disabled}>{t("workspace.clearDiagram")}</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+
+          <Menu shadow="md" width={220} position="bottom-start">
+            <Menu.Target>
+              <Button size="sm" variant="subtle" color="gray" rightSection={<BiChevronDown />} disabled={disabled || selectedCount < 2}>{t("workspace.menuAlign")}</Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item leftSection={<BiAlignLeft />} onClick={() => handleAlign("left")}>{t("workspace.alignLeft")}</Menu.Item>
+              <Menu.Item leftSection={<BiAlignRight />} onClick={() => handleAlign("right")}>{t("workspace.alignRight")}</Menu.Item>
+              <Menu.Item leftSection={<BiArrowFromTop />} onClick={() => handleAlign("top")}>{t("workspace.alignTop")}</Menu.Item>
+              <Menu.Item leftSection={<BiArrowFromBottom />} onClick={() => handleAlign("bottom")}>{t("workspace.alignBottom")}</Menu.Item>
+              <Menu.Divider />
+              <Menu.Item leftSection={<BiTransfer />} onClick={() => handleAlign("centerHorizontal")}>{t("workspace.alignCenterHorizontal")}</Menu.Item>
+              <Menu.Item leftSection={<BiTransferAlt />} onClick={() => handleAlign("centerVertical")}>{t("workspace.alignCenterVertical")}</Menu.Item>
             </Menu.Dropdown>
           </Menu>
         </div>

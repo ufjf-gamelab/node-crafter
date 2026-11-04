@@ -9,13 +9,19 @@ export const AsideNodeProperties: React.FunctionComponent = () => {
   const layoutContext = useLayoutContext();
   const nodes = useNodes<INode>();
 
-  const [selectedId, setSelectedId] = React.useState<string | null>(null);
-  const selectedNode = React.useMemo(() => nodes.find((node) => node.id === selectedId), [nodes, selectedId]);
-  useOnSelectionChange({ onChange: React.useCallback(({ nodes }) => setSelectedId(nodes[0]?.id || null), []) });
+  const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+  const selectedNode = React.useMemo(
+    () => (selectedIds.length === 1 ? nodes.find((node) => node.id === selectedIds[0]) : undefined),
+    [nodes, selectedIds]
+  );
+
+  useOnSelectionChange({
+    onChange: React.useCallback(({ nodes: selectedNodes }) => setSelectedIds(selectedNodes.map((node) => node.id)), []),
+  });
 
   React.useEffect(() => {
-    layoutContext.setAsidePropertiesOpen(!!selectedId);
-  }, [selectedId]);
+    layoutContext.setAsidePropertiesOpen(selectedIds.length === 1);
+  }, [selectedIds]);
 
   if (!selectedNode) return null;
   return (
