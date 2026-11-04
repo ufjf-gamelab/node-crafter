@@ -30,7 +30,7 @@ const Sidebar: FunctionComponent = () => {
     }
 
     return (
-        <aside className="text-[14px] text-slate-900 fixed z-20 left-0 top-14 bg-white h-[calc(100vh-3.5rem)] w-48 flex flex-col border-r select-none overflow-auto">
+        <aside className="text-[14px] text-slate-900 fixed z-20 left-0 top-16 bg-white h-[calc(100vh-4rem)] w-48 flex flex-col border-r select-none overflow-auto">
             <Accordion
                 variant="contained"
                 chevronPosition="right"
