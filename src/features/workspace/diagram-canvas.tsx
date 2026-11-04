@@ -127,7 +127,7 @@ export const DiagramCanvas: React.ComponentType = () => {
   );
 
   return (
-    <main className="absolute left-48 top-[76px] right-0 bottom-0">
+    <main className="absolute left-48 top-[92px] right-0 bottom-0">
       <ReactFlow
         nodes={nodes}
         edges={edges}

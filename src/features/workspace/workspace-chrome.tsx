@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactFlow } from "@xyflow/react";
-import { ActionIcon, Button, Menu, Modal, TextInput } from "@mantine/core";
-import { BiCopy, BiEdit, BiFile, BiFolder, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
+import { ActionIcon, Button, Loader, Menu, Modal, TextInput } from "@mantine/core";
+import { BiCheck, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -127,15 +127,15 @@ export const WorkspaceChrome: React.ComponentType = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-10 z-30 flex items-center select-none bg-white border-b border-slate-200">
-        <div className="flex h-full w-48 shrink-0 items-center gap-2 px-3 border-r border-slate-200 bg-slate-50/60">
-          <img src="logo/md.png" alt="Node Crafter" className="h-7 w-auto pointer-events-none" draggable={false} />
+      <header className="fixed top-0 left-0 right-0 h-14 z-30 flex items-center select-none bg-white border-b border-slate-200">
+        <div className="flex h-full w-48 shrink-0 items-center px-4 border-r border-slate-200 bg-slate-50/60">
+          <img src="logo/md.png" alt="Node Crafter" className="h-11 w-auto pointer-events-none" draggable={false} />
         </div>
 
-        <div className="flex items-center gap-1 px-2">
+        <div className="flex items-center gap-1 px-3">
           <Menu shadow="md" width={220}>
             <Menu.Target>
-              <Button size="compact-sm" variant="subtle" color="gray" leftSection={<BiFolder />}>{t("workspace.menuFile")}</Button>
+              <Button size="sm" variant="subtle" color="gray" leftSection={<BiFolder />}>{t("workspace.menuFile")}</Button>
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item leftSection={<BiPlus />} onClick={createDiagram} disabled={disabled}>{t("workspace.newDiagram")}</Menu.Item>
@@ -152,7 +152,7 @@ export const WorkspaceChrome: React.ComponentType = () => {
 
           <Menu shadow="md" width={200}>
             <Menu.Target>
-              <Button size="compact-sm" variant="subtle" color="gray" leftSection={<BiEdit />}>{t("workspace.menuEdit")}</Button>
+              <Button size="sm" variant="subtle" color="gray" leftSection={<BiEdit />}>{t("workspace.menuEdit")}</Button>
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item leftSection={<BiCopy />} onClick={duplicateDiagram} disabled={disabled || !activeDiagram}>{t("workspace.duplicateDiagram")}</Menu.Item>
@@ -164,19 +164,30 @@ export const WorkspaceChrome: React.ComponentType = () => {
           </Menu>
         </div>
 
-        <div className="ml-auto flex items-center gap-3 pr-3">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium ${
-              status === "error" ? "bg-red-50 text-red-600" : status === "saving" ? "bg-amber-50 text-amber-600" : "bg-emerald-50 text-emerald-600"
-            }`}>
-            <span className={`h-1.5 w-1.5 rounded-full ${status === "error" ? "bg-red-500" : status === "saving" ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`} />
-            {status === "saving" ? t("workspace.saving") : status === "error" ? t("workspace.saveError") : t("workspace.saved")}
+        <div className="ml-auto flex items-center gap-4 pr-4">
+          <span className={`flex items-center gap-1.5 text-xs ${status === "error" ? "text-red-500" : "text-slate-400"}`}>
+            {status === "saving" ? (
+              <>
+                <Loader size={12} color="gray" />
+                {t("workspace.saving")}
+              </>
+            ) : status === "error" ? (
+              <>
+                <BiErrorCircle className="text-sm" />
+                {t("workspace.saveError")}
+              </>
+            ) : (
+              <>
+                <BiCheck className="text-sm" />
+                {t("workspace.saved")}
+              </>
+            )}
           </span>
           <HelpIntroduction />
         </div>
       </header>
 
-      <nav className="fixed top-10 left-48 right-0 h-9 z-20 flex items-end gap-1 px-2 pt-1 bg-slate-50 border-b border-slate-200 overflow-x-auto select-none" aria-label={t("workspace.tabListLabel")}>
+      <nav className="fixed top-14 left-48 right-0 h-9 z-20 flex items-end gap-1 px-2 pt-1 bg-slate-50 border-b border-slate-200 overflow-x-auto select-none" aria-label={t("workspace.tabListLabel")}>
         {tabs.map((tab) => {
           const isActive = tab.id === workspace.activeDiagramId;
           return (
