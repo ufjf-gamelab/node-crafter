@@ -141,6 +141,9 @@ export function workspaceReducer(state: IWorkspace, action: WorkspaceAction): IW
       const diagram = state.diagrams[action.id];
       if (!diagram) return state;
 
+      const { x, y, zoom } = action.viewport;
+      if (diagram.viewport.x === x && diagram.viewport.y === y && diagram.viewport.zoom === zoom) return state;
+
       return {
         ...state,
         diagrams: {

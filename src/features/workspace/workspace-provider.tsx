@@ -108,7 +108,7 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
-  function flushActive(): void {
+  const flushActive = React.useCallback((): void => {
     const active = workspaceRef.current.diagrams[workspaceRef.current.activeDiagramId];
     if (!active) return;
 
@@ -123,16 +123,16 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
       viewport: flow.getViewport(),
       now: getNow(),
     });
-  }
+  }, [flow]);
 
-  function createDiagram(): void {
+  const createDiagram = React.useCallback((): void => {
     flushActive();
     const name = makeUniqueDiagramName(i18n.t("workspace.defaultName"), getDiagramNames(workspaceRef.current));
     dispatch({ type: "createDiagram", id: generateHash(), name, now: getNow() });
     notifications.show({ message: i18n.t("workspace.notifications.diagramCreated", { name }), color: "green" });
-  }
+  }, [flushActive]);
 
-  function duplicateDiagram(): void {
+  const duplicateDiagram = React.useCallback((): void => {
     const active = workspaceRef.current.diagrams[workspaceRef.current.activeDiagramId];
     if (!active) return;
 
@@ -140,9 +140,9 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
     const name = makeUniqueDiagramName(i18n.t("workspace.copyName", { name: active.name }), getDiagramNames(workspaceRef.current));
     dispatch({ type: "duplicateDiagram", id: generateHash(), sourceId: active.id, name, now: getNow() });
     notifications.show({ message: i18n.t("workspace.notifications.diagramCreated", { name }), color: "green" });
-  }
+  }, [flushActive]);
 
-  function renameDiagram(name: string): string {
+  const renameDiagram = React.useCallback((name: string): string => {
     const active = workspaceRef.current.diagrams[workspaceRef.current.activeDiagramId];
     if (!active) return name;
 
@@ -151,42 +151,48 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
     const uniqueName = makeUniqueDiagramName(normalized, getDiagramNames(workspaceRef.current, active.id));
     dispatch({ type: "renameDiagram", id: active.id, name: uniqueName, now: getNow() });
     return uniqueName;
-  }
+  }, []);
 
-  function closeDiagram(id: string): void {
-    if (!workspaceRef.current.diagrams[id]) return;
+  const closeDiagram = React.useCallback(
+    (id: string): void => {
+      if (!workspaceRef.current.diagrams[id]) return;
 
-    if (workspaceRef.current.activeDiagramId === id) flushActive();
+      if (workspaceRef.current.activeDiagramId === id) flushActive();
 
-    const replacementName = makeUniqueDiagramName(i18n.t("workspace.defaultName"), []);
-    dispatch({
-      type: "closeDiagram",
-      id,
-      replacementId: generateHash(),
-      replacementName,
-      now: getNow(),
-    });
-  }
+      const replacementName = makeUniqueDiagramName(i18n.t("workspace.defaultName"), []);
+      dispatch({
+        type: "closeDiagram",
+        id,
+        replacementId: generateHash(),
+        replacementName,
+        now: getNow(),
+      });
+    },
+    [flushActive]
+  );
 
-  function switchDiagram(id: string): void {
-    if (!workspaceRef.current.diagrams[id] || id === workspaceRef.current.activeDiagramId) return;
-    flushActive();
-    dispatch({ type: "setActiveDiagram", id });
-  }
+  const switchDiagram = React.useCallback(
+    (id: string): void => {
+      if (!workspaceRef.current.diagrams[id] || id === workspaceRef.current.activeDiagramId) return;
+      flushActive();
+      dispatch({ type: "setActiveDiagram", id });
+    },
+    [flushActive]
+  );
 
-  function updateActiveContent(content: IDiagramContent, viewport: IDiagramViewport): void {
+  const updateActiveContent = React.useCallback((content: IDiagramContent, viewport: IDiagramViewport): void => {
     dispatch({ type: "updateDiagram", id: workspaceRef.current.activeDiagramId, content, viewport, now: getNow() });
-  }
+  }, []);
 
-  function updateViewport(viewport: IDiagramViewport): void {
+  const updateViewport = React.useCallback((viewport: IDiagramViewport): void => {
     dispatch({ type: "updateViewport", id: workspaceRef.current.activeDiagramId, viewport, now: getNow() });
-  }
+  }, []);
 
-  function markExampleSeeded(): void {
+  const markExampleSeeded = React.useCallback((): void => {
     setPendingExampleSeed(false);
-  }
+  }, []);
 
-  function prepareDiagramImport(raw: unknown, fileName: string): IDiagram {
+  const prepareDiagramImport = React.useCallback((raw: unknown, fileName: string): IDiagram => {
     const kind = detectFileKind(raw);
     if (kind === "workspace") throw new Error(i18n.t("workspace.errors.notADiagram"));
     if (kind === "unknown") throw new Error(i18n.t("workspace.errors.invalidFile"));
@@ -203,31 +209,37 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
       ...diagram,
       name: makeUniqueDiagramName(diagram.name, getDiagramNames(workspaceRef.current)),
     };
-  }
+  }, []);
 
-  function prepareWorkspaceImport(raw: unknown): IWorkspace {
+  const prepareWorkspaceImport = React.useCallback((raw: unknown): IWorkspace => {
     const kind = detectFileKind(raw);
     if (kind === "diagram" || kind === "legacy") throw new Error(i18n.t("workspace.errors.notAWorkspace"));
     if (kind === "unknown") throw new Error(i18n.t("workspace.errors.invalidFile"));
 
     return deserializeWorkspace(raw, { now: getNow(), validNodeTypes: getValidNodeTypes() });
-  }
+  }, []);
 
-  function importDiagram(raw: unknown, fileName: string): void {
-    flushActive();
-    const diagram = prepareDiagramImport(raw, fileName);
-    dispatch({ type: "addDiagram", diagram });
-    setPendingExampleSeed(false);
-    notifications.show({ message: i18n.t("workspace.notifications.diagramImported", { name: diagram.name }), color: "green" });
-  }
+  const importDiagram = React.useCallback(
+    (raw: unknown, fileName: string): void => {
+      flushActive();
+      const diagram = prepareDiagramImport(raw, fileName);
+      dispatch({ type: "addDiagram", diagram });
+      setPendingExampleSeed(false);
+      notifications.show({ message: i18n.t("workspace.notifications.diagramImported", { name: diagram.name }), color: "green" });
+    },
+    [flushActive, prepareDiagramImport]
+  );
 
-  function replaceWorkspace(workspaceToImport: IWorkspace): void {
+  const replaceWorkspace = React.useCallback((workspaceToImport: IWorkspace): void => {
     dispatch({ type: "replaceWorkspace", workspace: workspaceToImport });
     setPendingExampleSeed(false);
-    notifications.show({ message: i18n.t("workspace.notifications.workspaceImported", { count: Object.keys(workspaceToImport.diagrams).length }), color: "green" });
-  }
+    notifications.show({
+      message: i18n.t("workspace.notifications.workspaceImported", { count: Object.keys(workspaceToImport.diagrams).length }),
+      color: "green",
+    });
+  }, []);
 
-  function exportDiagram(): void {
+  const exportDiagram = React.useCallback((): void => {
     const active = workspaceRef.current.diagrams[workspaceRef.current.activeDiagramId];
     if (!active) return;
 
@@ -246,9 +258,9 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
     } catch (error) {
       notifications.show({ message: i18n.t("workspace.notifications.exportFailed", { message: getErrorMessage(error) }), color: "red" });
     }
-  }
+  }, [flow]);
 
-  function exportWorkspace(): void {
+  const exportWorkspace = React.useCallback((): void => {
     const active = workspaceRef.current.diagrams[workspaceRef.current.activeDiagramId];
     if (!active) return;
 
@@ -273,28 +285,50 @@ export const WorkspaceProvider: React.ComponentType<{ children: React.ReactNode 
     } catch (error) {
       notifications.show({ message: i18n.t("workspace.notifications.exportFailed", { message: getErrorMessage(error) }), color: "red" });
     }
-  }
+  }, [flow]);
 
-  const value: WorkspaceContextValue = {
-    workspace,
-    status,
-    pendingExampleSeed,
-    createDiagram,
-    duplicateDiagram,
-    renameDiagram,
-    closeDiagram,
-    switchDiagram,
-    updateActiveContent,
-    updateViewport,
-    markExampleSeeded,
-    flushActive,
-    prepareDiagramImport,
-    prepareWorkspaceImport,
-    importDiagram,
-    replaceWorkspace,
-    exportDiagram,
-    exportWorkspace,
-  };
+  const value: WorkspaceContextValue = React.useMemo(
+    () => ({
+      workspace,
+      status,
+      pendingExampleSeed,
+      createDiagram,
+      duplicateDiagram,
+      renameDiagram,
+      closeDiagram,
+      switchDiagram,
+      updateActiveContent,
+      updateViewport,
+      markExampleSeeded,
+      flushActive,
+      prepareDiagramImport,
+      prepareWorkspaceImport,
+      importDiagram,
+      replaceWorkspace,
+      exportDiagram,
+      exportWorkspace,
+    }),
+    [
+      workspace,
+      status,
+      pendingExampleSeed,
+      createDiagram,
+      duplicateDiagram,
+      renameDiagram,
+      closeDiagram,
+      switchDiagram,
+      updateActiveContent,
+      updateViewport,
+      markExampleSeeded,
+      flushActive,
+      prepareDiagramImport,
+      prepareWorkspaceImport,
+      importDiagram,
+      replaceWorkspace,
+      exportDiagram,
+      exportWorkspace,
+    ]
+  );
 
   return <WorkspaceContext.Provider value={value}>{children}</WorkspaceContext.Provider>;
 };

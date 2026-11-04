@@ -28,7 +28,57 @@ export const SimulationProvider: React.ComponentType<UIStateProviderProps> = ({ 
   const [loading, setLoading] = React.useState(false);
   const [iterations, setIterations] = React.useState(10000);
 
-  async function runSimulation() {
+  const runIterativeFromHistogram = React.useCallback(
+    (histogramNode: IHistogramNode): INodeState<IHistogramNode> => {
+      const stack: INode[] = [histogramNode];
+      const visited = new Set<string>();
+      let index = 0;
+
+      while (stack.length > 0) {
+        if (++index > 10000) {
+          throw new Error("Execution aborted: possible infinite loop detected.");
+        }
+
+        const currentNode = stack[stack.length - 1];
+        const nodeEdges = flow.getEdges().filter((edge) => edge.target === currentNode.id);
+        const sourceNodes = nodeEdges.map((edge) => flow.getNode(edge.source)).filter(Boolean) as INode[];
+        const inputs: { node: INode; state: INodeState }[] = [];
+
+        let allInputsReady = true;
+        for (const sourceNode of sourceNodes) {
+          const resultState = nodesStateMap.get(sourceNode.id);
+          if (!resultState) {
+            if (!visited.has(sourceNode.id)) {
+              stack.push(sourceNode);
+              visited.add(sourceNode.id);
+            }
+            allInputsReady = false;
+            break;
+          }
+          inputs.push({ node: sourceNode, state: resultState });
+        }
+
+        if (!allInputsReady) continue;
+
+        try {
+          const resultState = NodeManager.runIterative(currentNode, inputs, iterations);
+          nodesStateMap.set(currentNode.id, resultState);
+          flow.updateNodeData(currentNode.id, { ...currentNode.data, status: "FINISHED" });
+          stack.pop();
+        } catch (error) {
+          flow.updateNodeData(currentNode.id, { ...currentNode.data, status: "ERROR", errorMessage: error?.message });
+          throw error;
+        }
+      }
+
+      const finalState = nodesStateMap.get(histogramNode.id) as INodeState<IHistogramNode> | undefined;
+      if (!finalState) throw new Error(i18n.t("errors.histogramStateNotFound", { name: histogramNode.data.name }));
+      return finalState;
+    },
+    [flow, iterations]
+  );
+
+  const runSimulation = React.useCallback(async () => {
     setLoading(true);
     nodesStateMap.clear();
     const nodes = flow.getNodes();
@@ -67,65 +117,21 @@ export const SimulationProvider: React.ComponentType<UIStateProviderProps> = ({ 
     nodesStateMap.clear();
     setCharts(newCharts);
     setLoading(false);
-  }
+  }, [flow, runIterativeFromHistogram]);
 
-  function runIterativeFromHistogram(histogramNode: IHistogramNode): INodeState<IHistogramNode> {
-    const stack: INode[] = [histogramNode];
-    const visited = new Set<string>();
-    let index = 0;
-
-    while (stack.length > 0) {
-      if (++index > 10000) {
-        throw new Error("Execution aborted: possible infinite loop detected.");
-      }
-
-      const currentNode = stack[stack.length - 1];
-      const nodeEdges = flow.getEdges().filter((edge) => edge.target === currentNode.id);
-      const sourceNodes = nodeEdges.map((edge) => flow.getNode(edge.source)).filter(Boolean) as INode[];
-      const inputs: { node: INode; state: INodeState }[] = [];
-
-      let allInputsReady = true;
-      for (const sourceNode of sourceNodes) {
-        const resultState = nodesStateMap.get(sourceNode.id);
-        if (!resultState) {
-          if (!visited.has(sourceNode.id)) {
-            stack.push(sourceNode);
-            visited.add(sourceNode.id);
-          }
-          allInputsReady = false;
-          break;
-        }
-        inputs.push({ node: sourceNode, state: resultState });
-      }
-
-      if (!allInputsReady) continue;
-
-      try {
-        const resultState = NodeManager.runIterative(currentNode, inputs, iterations);
-        nodesStateMap.set(currentNode.id, resultState);
-        flow.updateNodeData(currentNode.id, { ...currentNode.data, status: "FINISHED" });
-        stack.pop();
-      } catch (error) {
-        flow.updateNodeData(currentNode.id, { ...currentNode.data, status: "ERROR", errorMessage: error?.message });
-        throw error;
-      }
-    }
-
-    const finalState = nodesStateMap.get(histogramNode.id) as INodeState<IHistogramNode> | undefined;
-    if (!finalState) throw new Error(i18n.t("errors.histogramStateNotFound", { name: histogramNode.data.name }));
-    return finalState;
-  }
-
-  function clearSimulation() {
+  const clearSimulation = React.useCallback(() => {
     setCharts([]);
     nodesStateMap.clear();
     const nodes = flow.getNodes();
     nodes.forEach((node) => flow.updateNodeData(node.id, { ...node.data, status: "IDLE" }));
-  }
+  }, [flow]);
 
-  return (
-    <LayoutContent.Provider value={{ loading, runSimulation, clearSimulation, charts, iterations, setIterations }}>{children}</LayoutContent.Provider>
+  const value = React.useMemo(
+    () => ({ loading, runSimulation, clearSimulation, charts, iterations, setIterations }),
+    [loading, runSimulation, clearSimulation, charts, iterations]
   );
+
+  return <LayoutContent.Provider value={value}>{children}</LayoutContent.Provider>;
 };
 
 export const useSimulationContext = (): UIStateContextProps => {

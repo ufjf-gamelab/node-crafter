@@ -14,12 +14,14 @@ export const DiagramCanvas: React.ComponentType = () => {
   const activeId = workspace.activeDiagramId;
   const [nodes, setNodes, onNodesChange] = useNodesState<INode>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<IEdge>([]);
+  const hydratedDiagramIdRef = React.useRef<string | null>(null);
   const hydratingRef = React.useRef(false);
   const seededRef = React.useRef(false);
 
   React.useEffect(() => {
     if (!pendingExampleSeed || seededRef.current) return;
     seededRef.current = true;
+    hydratedDiagramIdRef.current = workspace.activeDiagramId;
 
     const dice = NodeManager.new("diceGenerator", flow);
     dice.position = { x: 20, y: -40 };
@@ -63,11 +65,13 @@ export const DiagramCanvas: React.ComponentType = () => {
     setNodes([dice, diceMath, integerValue, histogram]);
     setEdges(exampleEdges);
     markExampleSeeded();
-  }, [pendingExampleSeed, flow, markExampleSeeded, setNodes, setEdges]);
+  }, [pendingExampleSeed, workspace, flow, markExampleSeeded, setNodes, setEdges]);
 
   React.useEffect(() => {
     const diagram = workspace.diagrams[activeId];
     if (!diagram) return;
+    if (hydratedDiagramIdRef.current === activeId) return;
+    hydratedDiagramIdRef.current = activeId;
 
     hydratingRef.current = true;
     setNodes(diagram.nodes);
