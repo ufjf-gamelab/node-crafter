@@ -31,15 +31,6 @@ const Sidebar: FunctionComponent = () => {
 
     return (
         <aside className="text-[14px] text-slate-900 fixed z-20 left-0 top-10 bg-white h-[calc(100vh-2.5rem)] w-48 flex flex-col border-r select-none overflow-auto">
-            <div className="px-4 mt-2 mb-2">
-                <img
-                    src="logo/md.png"
-                    alt="Node Crafter logo"
-                    className="w-full pointer-events-none"
-                    draggable={false}
-                />
-            </div>
-
             <Accordion
                 variant="contained"
                 chevronPosition="right"

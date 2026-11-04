@@ -19,7 +19,7 @@ export const AsideNodeProperties: React.FunctionComponent = () => {
 
   if (!selectedNode) return null;
   return (
-    <div className="fixed right-0 top-10 h-[calc(100vh-2.5rem)] bg-white z-20 border-l text-sm overflow-y-auto" style={{ width: layoutContext.asidePropertiesWidth + "px" }}>
+    <div className="fixed right-0 top-[76px] h-[calc(100vh-76px)] bg-white z-20 border-l text-sm overflow-y-auto" style={{ width: layoutContext.asidePropertiesWidth + "px" }}>
       {renderNodeProperties(selectedNode)}
     </div>
   );

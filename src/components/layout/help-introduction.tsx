@@ -25,11 +25,12 @@ const HelpIntroduction: React.FC = () => {
     <>
       <Tooltip label={t("introductionDoc.buttonTooltip")}>
         <ActionIcon
-          color="dark"
+          color="gray"
           variant="subtle"
           onClick={() => setOpened(true)}
-          size="input-lg"
-          className="fixed right-2 top-11 z-40 text-3xl rounded-full">
+          size="sm"
+          aria-label={t("introductionDoc.buttonTooltip")}
+          className="text-lg">
           <BiSolidHelpCircle />
         </ActionIcon>
       </Tooltip>
