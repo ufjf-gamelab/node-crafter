@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactFlow } from "@xyflow/react";
 import { ActionIcon, Button, Loader, Menu, Modal, TextInput } from "@mantine/core";
-import { BiCheck, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
+import { BiCheck, BiChevronDown, BiCopy, BiEdit, BiErrorCircle, BiFile, BiFolder, BiPlus, BiSave, BiTrash, BiX } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -133,9 +133,9 @@ export const WorkspaceChrome: React.ComponentType = () => {
         </div>
 
         <div className="flex items-center gap-1 px-3">
-          <Menu shadow="md" width={220}>
+          <Menu shadow="md" width={220} position="bottom-start">
             <Menu.Target>
-              <Button size="sm" variant="subtle" color="gray" leftSection={<BiFolder />}>{t("workspace.menuFile")}</Button>
+              <Button size="sm" variant="subtle" color="gray" leftSection={<BiFolder />} rightSection={<BiChevronDown />}>{t("workspace.menuFile")}</Button>
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item leftSection={<BiPlus />} onClick={createDiagram} disabled={disabled}>{t("workspace.newDiagram")}</Menu.Item>
@@ -150,9 +150,9 @@ export const WorkspaceChrome: React.ComponentType = () => {
             </Menu.Dropdown>
           </Menu>
 
-          <Menu shadow="md" width={200}>
+          <Menu shadow="md" width={200} position="bottom-start">
             <Menu.Target>
-              <Button size="sm" variant="subtle" color="gray">{t("workspace.menuEdit")}</Button>
+              <Button size="sm" variant="subtle" color="gray" rightSection={<BiChevronDown />}>{t("workspace.menuEdit")}</Button>
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item leftSection={<BiCopy />} onClick={duplicateDiagram} disabled={disabled || !activeDiagram}>{t("workspace.duplicateDiagram")}</Menu.Item>
